@@ -1,0 +1,32 @@
+# IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+local.properties
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Android
+bin/
+target
+gen/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Gradle
+.gradle
+build
+bin
+
+# vi
+*.swp

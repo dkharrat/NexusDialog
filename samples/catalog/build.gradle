@@ -1,0 +1,31 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:0.6.+'
+  }
+}
+
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  compile project(':nexusdialog')
+}
+
+android {
+  buildToolsVersion "19"
+  compileSdkVersion 17
+
+  sourceSets {
+    main {
+      java.srcDirs = ['src/main/java']
+      resources.srcDirs = ['src/main/resources']
+    }
+  }
+}
