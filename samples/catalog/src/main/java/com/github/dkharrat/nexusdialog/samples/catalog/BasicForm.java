@@ -16,23 +16,23 @@ import java.util.List;
 public class BasicForm extends FormActivity {
     @Override
     protected void initForm() {
-        FormSectionController section = new FormSectionController("personalInfoSection", "Personal Info");
+        FormSectionController section = new FormSectionController("Personal Info");
         section.addElement(new EditTextController("firstName", "First name"));
         section.addElement(new EditTextController("lastName", "Last name"));
         section.addElement(new SelectionController("gender", "Gender", false, "Select",
                 new ArrayList<String>(Arrays.asList("Male", "Female")), true) {{
             setIsRequired(true);
         }});
-        section.addElement(new SearchableSelectionController("reason", "Reason", false, "Two", new SearchableSelectionController.SelectionDataSource() {
+        section.addElement(new SearchableSelectionController("favColor", "Favorite Color", false, "Blue", new SearchableSelectionController.SelectionDataSource() {
             @Override
             public List<String> getItems() {
-                return new ArrayList<String>(Arrays.asList("One", "Two", "Three", "Four", "Five"));
+                return new ArrayList<String>(Arrays.asList("Red", "Blue", "Green", "Purple", "Pink"));
             }
         }));
 
         addSection(section);
 
-        setTitle("Test");
+        setTitle("Simple Form");
     }
 
     @Override
@@ -44,7 +44,8 @@ public class BasicForm extends FormActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)  {
-        boolean result = super.onOptionsItemSelected(item);
-        return validateForm() || result;
+        super.onOptionsItemSelected(item);
+        showValidationErrors();
+        return true;
     }
 }

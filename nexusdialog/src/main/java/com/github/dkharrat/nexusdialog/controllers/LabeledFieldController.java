@@ -84,7 +84,7 @@ public abstract class LabeledFieldController extends FormElementController {
         if (isRequired()) {
             Object value = getModel().getValue(getName());
             if (value instanceof String &&  (!TextUtils.isEmpty((String)value) || value != null)) {
-                errors.add(new RequiredField(getName()));
+                errors.add(new RequiredField(getLabel()));
             }
         }
 
