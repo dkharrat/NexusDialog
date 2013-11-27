@@ -29,6 +29,7 @@ public class BasicForm extends FormActivity {
                 return new ArrayList<String>(Arrays.asList("Red", "Blue", "Green", "Purple", "Pink"));
             }
         }));
+        section.addElement(new CustomElement("customElem", "Custom Element"));
 
         addSection(section);
 
