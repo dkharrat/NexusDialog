@@ -21,6 +21,7 @@ import java.util.List;
 public abstract class LabeledFieldController extends FormElementController {
     private final String labelText;
     private boolean required;
+    private View fieldView;
 
     /**
      * Creates a labeled field.
@@ -30,7 +31,7 @@ public abstract class LabeledFieldController extends FormElementController {
      * @param isRequired    indicates whether this field is required. If true, this field checks for a non-empty or
      *                      non-null value upon validation. Otherwise, this field can be empty.
      */
-    public LabeledFieldController(final String name, String labelText, boolean isRequired) {
+    public LabeledFieldController(String name, String labelText, boolean isRequired) {
         super(name);
         this.labelText = labelText;
         required = isRequired;
@@ -83,12 +84,25 @@ public abstract class LabeledFieldController extends FormElementController {
 
         if (isRequired()) {
             Object value = getModel().getValue(getName());
-            if (value instanceof String &&  (!TextUtils.isEmpty((String)value) || value != null)) {
+            if (value == null || (value instanceof String && TextUtils.isEmpty((String)value))) {
                 errors.add(new RequiredField(getLabel()));
             }
         }
 
         return errors;
+    }
+
+    /**
+     * Returns the associated view for the field (without the label view) of this element.
+     *
+     * @param context   the Android context
+     * @return          the view for this element
+     */
+    public View getFieldView(Context context) {
+        if (fieldView == null) {
+            fieldView = constructFieldView(context);
+        }
+        return fieldView;
     }
 
     /**
@@ -100,7 +114,7 @@ public abstract class LabeledFieldController extends FormElementController {
     protected abstract View constructFieldView(Context context);
 
     @Override
-    public View constructView(Context context) {
+    protected View constructView(Context context) {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.form_labeled_element, null);
 
@@ -108,7 +122,7 @@ public abstract class LabeledFieldController extends FormElementController {
         label.setText(labelText);
 
         FrameLayout container = (FrameLayout)view.findViewById(R.id.field_container);
-        container.addView(constructFieldView(context));
+        container.addView(getFieldView(context));
 
         return view;
     }

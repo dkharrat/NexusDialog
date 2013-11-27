@@ -32,7 +32,7 @@ public class SelectionController extends LabeledFieldController {
      *                              {@code SelectionController} expects the form model to use index (as an Integer) to
      *                              represent the selected item
      */
-    public SelectionController(final String name, String labelText, boolean isRequired, String prompt, List<String> items, boolean useItemsAsValues) {
+    public SelectionController(String name, String labelText, boolean isRequired, String prompt, List<String> items, boolean useItemsAsValues) {
         this(name, labelText, isRequired, prompt, items, useItemsAsValues ? items : null);
     }
 
@@ -47,7 +47,7 @@ public class SelectionController extends LabeledFieldController {
      * @param values                a list of Objects representing the values to set the form model on a selection (in
      *                              the same order as the {@code items}.
      */
-    public SelectionController(final String name, String labelText, boolean isRequired, String prompt, List<String> items, List<?> values) {
+    public SelectionController(String name, String labelText, boolean isRequired, String prompt, List<String> items, List<?> values) {
         super(name, labelText, isRequired);
         this.prompt = prompt;
         this.items = items;
@@ -55,7 +55,7 @@ public class SelectionController extends LabeledFieldController {
     }
 
     @Override
-    public View constructFieldView(Context context) {
+    protected View constructFieldView(Context context) {
         Spinner spinnerView = new Spinner(context);
         spinnerView.setPrompt(prompt);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);

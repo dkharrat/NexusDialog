@@ -10,6 +10,7 @@ import android.view.View;
 public abstract class FormElementController {
     private final String name;
     private FormModel model;
+    private View view;
 
     /**
      * Constructs a new instance with the specified name
@@ -42,10 +43,23 @@ public abstract class FormElementController {
     }
 
     /**
-     * Construct the view to display for this element.
+     * Returns the associated view for this element.
+     *
+     * @param context   the Android context
+     * @return          the view for this element
+     */
+    public View getView(Context context) {
+        if (view == null) {
+            view = constructView(context);
+        }
+        return view;
+    }
+
+    /**
+     * Constructs the view for this element.
      *
      * @param context   the Android context
      * @return          a newly created view for this element
      */
-    public abstract View constructView(Context context);
+    protected abstract View constructView(Context context);
 }

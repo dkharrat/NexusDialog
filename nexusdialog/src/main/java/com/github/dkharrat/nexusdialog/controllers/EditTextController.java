@@ -25,7 +25,7 @@ public class EditTextController extends LabeledFieldController {
      * @param inputType     the content type of the text box as a mask; possible values are defined by {@link InputType}.
      *                      For example, to enable multi-line, enable {@code InputType.TYPE_TEXT_FLAG_MULTI_LINE}.
      */
-    public EditTextController(final String name, String labelText, boolean isRequired, String placeholder, int inputType) {
+    public EditTextController(String name, String labelText, boolean isRequired, String placeholder, int inputType) {
         super(name, labelText, isRequired);
         this.placeholder = placeholder;
         this.inputType = inputType;
@@ -38,7 +38,7 @@ public class EditTextController extends LabeledFieldController {
      * @param labelText     the label to display beside the field
      * @param isRequired    indicates if the field is required or not
      */
-    public EditTextController(final String name, String labelText, boolean isRequired) {
+    public EditTextController(String name, String labelText, boolean isRequired) {
         this(name, labelText, isRequired, null, InputType.TYPE_CLASS_TEXT);
     }
 
@@ -48,7 +48,7 @@ public class EditTextController extends LabeledFieldController {
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
      */
-    public EditTextController(final String name, String labelText) {
+    public EditTextController(String name, String labelText) {
         this(name, labelText, false, null, InputType.TYPE_CLASS_TEXT);
     }
 

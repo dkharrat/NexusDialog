@@ -171,10 +171,12 @@ public abstract class FormActivity extends ActionBarActivity {
      * Shows an appropriate error message if there are validation errors in the form's input.
      */
     protected void showValidationErrors() {
+        StringBuilder sb = new StringBuilder();
         Resources res = getResources();
         for (ValidationError error : validateInput()) {
-            MessageUtil.showAlertMessage(res.getString(R.string.validation_error_title), error.getMessage(res), this);
+            sb.append(error.getMessage(res) + "\n");
         }
+        MessageUtil.showAlertMessage(getString(R.string.validation_error_title), sb.toString(), this);
     }
 
     private void setupView() {
@@ -182,11 +184,11 @@ public abstract class FormActivity extends ActionBarActivity {
 
         for (FormSectionController section : getSections()) {
             ((FormElementController)section).setModel(getModel());
-            containerView.addView(section.constructView(this));
+            containerView.addView(section.getView(this));
 
             for (FormElementController element : section.getElements()) {
                 element.setModel(getModel());
-                containerView.addView(element.constructView(this));
+                containerView.addView(element.getView(this));
             }
         }
     }

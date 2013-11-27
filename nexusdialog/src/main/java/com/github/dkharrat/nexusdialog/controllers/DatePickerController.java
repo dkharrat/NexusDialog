@@ -32,7 +32,7 @@ public class DatePickerController extends LabeledFieldController {
      * @param isRequired        indicates if the field is required or not
      * @param displayFormat     the format of the date to show in the text box when a date is set
      */
-    public DatePickerController(final String name, String labelText, boolean isRequired, SimpleDateFormat displayFormat) {
+    public DatePickerController(String name, String labelText, boolean isRequired, SimpleDateFormat displayFormat) {
         super(name, labelText, isRequired);
         this.displayFormat = displayFormat;
     }
@@ -43,7 +43,7 @@ public class DatePickerController extends LabeledFieldController {
      * @param name              the name of the field
      * @param labelText         the label to display beside the field
      */
-    public DatePickerController(final String name, String labelText) {
+    public DatePickerController(String name, String labelText) {
         this(name, labelText, false, new SimpleDateFormat("MMM d, yyyy", Locale.getDefault()));
     }
 

@@ -47,7 +47,7 @@ public class SearchableSelectionController extends LabeledFieldController {
     /**
      * An interface that provides the list of items to display for the {@link SearchableSelectionController}.
      */
-    public interface SelectionDataSource {
+    public static interface SelectionDataSource {
         /**
          * Returns a list of all the items that can be selected or searched.
          *
@@ -65,7 +65,7 @@ public class SearchableSelectionController extends LabeledFieldController {
      * @param placeholder   a placeholder text to show when the input field is empty
      * @param dataSource    the data source that provides the list of items to display
      */
-    public SearchableSelectionController(final String name, String labelText, boolean isRequired, String placeholder, SelectionDataSource dataSource) {
+    public SearchableSelectionController(String name, String labelText, boolean isRequired, String placeholder, SelectionDataSource dataSource) {
         super(name, labelText, isRequired);
         this.placeholder = placeholder;
         this.dataSource = dataSource;

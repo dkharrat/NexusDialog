@@ -157,7 +157,7 @@ public class FormSectionController extends FormElementController {
     }
 
     @Override
-    public View constructView(Context context) {
+    protected View constructView(Context context) {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view;

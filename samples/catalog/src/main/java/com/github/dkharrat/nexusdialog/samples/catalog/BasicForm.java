@@ -7,34 +7,48 @@ import com.github.dkharrat.nexusdialog.*;
 import com.github.dkharrat.nexusdialog.controllers.EditTextController;
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController;
+import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
 import com.github.dkharrat.nexusdialog.controllers.SelectionController;
+import com.github.dkharrat.nexusdialog.util.MessageUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class BasicForm extends FormActivity {
+
+    private final static String FIRST_NAME = "firstName";
+    private final static String LAST_NAME = "lastName";
+    private final static String GENDER = "gender";
+    private final static String FAVORITE_COLOR = "favColor";
+    private final static String CUSTOM_ELEM = "customElem";
+
     @Override
     protected void initForm() {
         FormSectionController section = new FormSectionController("Personal Info");
-        section.addElement(new EditTextController("firstName", "First name"));
-        section.addElement(new EditTextController("lastName", "Last name"));
-        section.addElement(new SelectionController("gender", "Gender", false, "Select",
-                new ArrayList<String>(Arrays.asList("Male", "Female")), true) {{
-            setIsRequired(true);
-        }});
-        section.addElement(new SearchableSelectionController("favColor", "Favorite Color", false, "Blue", new SearchableSelectionController.SelectionDataSource() {
-            @Override
-            public List<String> getItems() {
-                return new ArrayList<String>(Arrays.asList("Red", "Blue", "Green", "Purple", "Pink"));
-            }
-        }));
-        section.addElement(new CustomElement("customElem", "Custom Element"));
+        section.addElement(new EditTextController(FIRST_NAME, "First name"));
+        section.addElement(new EditTextController(LAST_NAME, "Last name"));
+        section.addElement(new SelectionController(GENDER, "Gender", true, "Select",
+                new ArrayList<String>(Arrays.asList("Male", "Female")), true));
+        section.addElement(new SearchableSelectionController(FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
+        section.addElement(new CustomElement(CUSTOM_ELEM, "Custom Element"));
 
         addSection(section);
 
         setTitle("Simple Form");
     }
+
+    private final SelectionDataSource dataSource = new SelectionDataSource() {
+        @Override public List<String> getItems() {
+            return Arrays.asList(
+                    "Red",
+                    "Blue",
+                    "Green",
+                    "Purple",
+                    "Pink"
+            );
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,7 +60,21 @@ public class BasicForm extends FormActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)  {
         super.onOptionsItemSelected(item);
-        showValidationErrors();
+
+        if (isValidInput()) {
+            Object firstName = getModel().getValue(FIRST_NAME);
+            Object lastName = getModel().getValue(LAST_NAME);
+            Object gender = getModel().getValue(GENDER);
+            Object favColor = getModel().getValue(FAVORITE_COLOR);
+
+            String msg = "First name: " + firstName + "\n"
+                    + "Last name: " + lastName + "\n"
+                    + "Gender: " + gender + "\n"
+                    + "Favorite Color: " + favColor + "\n";
+            MessageUtil.showAlertMessage("Field Values", msg, this);
+        } else {
+            showValidationErrors();
+        }
         return true;
     }
 }
