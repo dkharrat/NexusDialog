@@ -29,8 +29,7 @@ public class BasicForm extends FormActivity {
         FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name"));
         section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
-        section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select",
-                new ArrayList<String>(Arrays.asList("Male", "Female")), true));
+        section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
         section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
 
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
