@@ -24,8 +24,8 @@ import com.github.dkharrat.nexusdialog.FormElementController;
 public class FormSectionController extends FormElementController {
 
     private final String title;
-    private final Map<String,FormElementController> m_elements = new HashMap<String,FormElementController>();
-    private final List<FormElementController> m_orderedElements = new ArrayList<FormElementController>();
+    private final Map<String,FormElementController> elements = new HashMap<String,FormElementController>();
+    private final List<FormElementController> orderedElements = new ArrayList<FormElementController>();
 
     /**
      * Creates a new instance of a form section with a specified name and title.
@@ -75,11 +75,11 @@ public class FormSectionController extends FormElementController {
             throw new IllegalArgumentException("Sub-sections are not supported");
         }
 
-        if (m_elements.containsKey(element.getName())) {
+        if (elements.containsKey(element.getName())) {
             throw new IllegalArgumentException("Element with that name already exists");
         } else {
-            m_elements.put(element.getName(), element);
-            m_orderedElements.add(element);
+            elements.put(element.getName(), element);
+            orderedElements.add(element);
             return element;
         }
     }
@@ -103,8 +103,8 @@ public class FormSectionController extends FormElementController {
      * @return      the removed form element instance, or null of no such element was found.
      */
     public FormElementController removeElement(String name) {
-        FormElementController element = m_elements.remove(name);
-        m_orderedElements.remove(element);
+        FormElementController element = elements.remove(name);
+        orderedElements.remove(element);
         return element;
     }
 
@@ -115,7 +115,7 @@ public class FormSectionController extends FormElementController {
      * @return          the removed form element instance, or null of no such element was found.
      */
     public FormElementController removeElement(FormElementController element) {
-        return m_elements.remove(element.getName());
+        return elements.remove(element.getName());
     }
 
     /**
@@ -125,7 +125,7 @@ public class FormSectionController extends FormElementController {
      * @return      the form element with the specified name, or null if no such element was found
      */
     public FormElementController getElement(String name) {
-        return m_elements.get(name);
+        return elements.get(name);
     }
 
     /**
@@ -135,7 +135,7 @@ public class FormSectionController extends FormElementController {
      * @return  the form element at the specified index
      */
     public FormElementController getElement(int i) {
-        return m_orderedElements.get(i);
+        return orderedElements.get(i);
     }
 
     /**
@@ -144,7 +144,7 @@ public class FormSectionController extends FormElementController {
      * @return a list of the section's elements
      */
     public List<FormElementController> getElements() {
-        return m_orderedElements;
+        return orderedElements;
     }
 
     /**
@@ -153,7 +153,7 @@ public class FormSectionController extends FormElementController {
      * @return the number of elements in this section
      */
     public int getNumberOfElements() {
-        return m_elements.size();
+        return elements.size();
     }
 
     @Override

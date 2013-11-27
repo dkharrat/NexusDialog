@@ -11,7 +11,7 @@ import com.github.dkharrat.nexusdialog.util.ObjectUtil;
  */
 public abstract class FormModel {
 
-    private final PropertyChangeSupport m_propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * This method is called when a form element changes its value through user input or external changes. Subclasses
@@ -52,7 +52,7 @@ public abstract class FormModel {
         Object curValue = getBackingValue(name);
         if (!ObjectUtil.objectsEqual(curValue, newValue)) {
             setBackingValue(name, newValue);
-            m_propertyChangeSupport.firePropertyChange(name, curValue, newValue);
+            propertyChangeSupport.firePropertyChange(name, curValue, newValue);
         }
     }
 
@@ -62,7 +62,7 @@ public abstract class FormModel {
      * @see {@link PropertyChangeSupport#addPropertyChangeListener}
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        m_propertyChangeSupport.addPropertyChangeListener(listener);
+        propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
     /**
@@ -71,6 +71,6 @@ public abstract class FormModel {
      * @see {@link PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)}
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
-        m_propertyChangeSupport.removePropertyChangeListener(listener);
+        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 }
