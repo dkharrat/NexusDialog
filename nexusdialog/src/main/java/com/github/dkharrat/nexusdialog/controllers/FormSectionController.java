@@ -30,11 +30,12 @@ public class FormSectionController extends FormElementController {
     /**
      * Creates a new instance of a form section with a specified name and title.
      *
+     * @param ctx   the Android context
      * @param name  the name of the section
      * @param title the title of the section to display
      */
-    public FormSectionController(String name, String title) {
-        super(name);
+    public FormSectionController(Context ctx, String name, String title) {
+        super(ctx, name);
         this.title = title;
     }
 
@@ -44,15 +45,15 @@ public class FormSectionController extends FormElementController {
      *
      * @param title
      */
-    public FormSectionController(String title) {
-        this(UUID.randomUUID().toString(), title);
+    public FormSectionController(Context context, String title) {
+        this(context, UUID.randomUUID().toString(), title);
     }
 
     /**
      * Creates a new instance of a form section with no title or name.
      */
-    public FormSectionController() {
-        this(null);
+    public FormSectionController(Context context) {
+        this(context, null);
     }
 
     /**
@@ -157,8 +158,8 @@ public class FormSectionController extends FormElementController {
     }
 
     @Override
-    protected View constructView(Context context) {
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    protected View constructView() {
+        LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view;
         if (!TextUtils.isEmpty(getTitle())) {

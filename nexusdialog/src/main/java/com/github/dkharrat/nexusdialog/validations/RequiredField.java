@@ -17,6 +17,7 @@ public class RequiredField extends ValidationError {
         super(fieldName);
     }
 
+    @Override
     public String getMessage(Resources resources) {
         return String.format(resources.getString(R.string.required_field_error_msg), getFieldName());
     }

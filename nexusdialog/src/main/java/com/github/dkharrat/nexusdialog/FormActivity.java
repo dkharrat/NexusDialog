@@ -184,11 +184,11 @@ public abstract class FormActivity extends ActionBarActivity {
 
         for (FormSectionController section : getSections()) {
             ((FormElementController)section).setModel(getModel());
-            containerView.addView(section.getView(this));
+            containerView.addView(section.getView());
 
             for (FormElementController element : section.getElements()) {
                 element.setModel(getModel());
-                containerView.addView(element.getView(this));
+                containerView.addView(element.getView());
             }
         }
     }

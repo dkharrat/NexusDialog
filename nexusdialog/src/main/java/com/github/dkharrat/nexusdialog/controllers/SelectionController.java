@@ -22,6 +22,7 @@ public class SelectionController extends LabeledFieldController {
     /**
      * Constructs a selection field
      *
+     * @param ctx                   the Android context
      * @param name                  the name of the field
      * @param labelText             the label to display beside the field
      * @param isRequired            indicates if the field is required or not
@@ -32,13 +33,14 @@ public class SelectionController extends LabeledFieldController {
      *                              {@code SelectionController} expects the form model to use index (as an Integer) to
      *                              represent the selected item
      */
-    public SelectionController(String name, String labelText, boolean isRequired, String prompt, List<String> items, boolean useItemsAsValues) {
-        this(name, labelText, isRequired, prompt, items, useItemsAsValues ? items : null);
+    public SelectionController(Context ctx, String name, String labelText, boolean isRequired, String prompt, List<String> items, boolean useItemsAsValues) {
+        this(ctx, name, labelText, isRequired, prompt, items, useItemsAsValues ? items : null);
     }
 
     /**
      * Constructs a selection field
      *
+     * @param ctx                   the Android context
      * @param name                  the name of the field
      * @param labelText             the label to display beside the field
      * @param isRequired            indicates if the field is required or not
@@ -47,20 +49,20 @@ public class SelectionController extends LabeledFieldController {
      * @param values                a list of Objects representing the values to set the form model on a selection (in
      *                              the same order as the {@code items}.
      */
-    public SelectionController(String name, String labelText, boolean isRequired, String prompt, List<String> items, List<?> values) {
-        super(name, labelText, isRequired);
+    public SelectionController(Context ctx, String name, String labelText, boolean isRequired, String prompt, List<String> items, List<?> values) {
+        super(ctx, name, labelText, isRequired);
         this.prompt = prompt;
         this.items = items;
         this.values = values;
     }
 
     @Override
-    protected View constructFieldView(Context context) {
-        Spinner spinnerView = new Spinner(context);
+    protected View constructFieldView() {
+        Spinner spinnerView = new Spinner(getContext());
         spinnerView.setPrompt(prompt);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerView.setAdapter(new NothingSelectedSpinnerAdapter(spinnerAdapter, R.layout.nothing_selected, context));
+        spinnerView.setAdapter(new NothingSelectedSpinnerAdapter(spinnerAdapter, R.layout.nothing_selected, getContext()));
         spinnerView.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override

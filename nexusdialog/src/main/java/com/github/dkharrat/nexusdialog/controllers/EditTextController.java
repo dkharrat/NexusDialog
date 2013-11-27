@@ -18,6 +18,7 @@ public class EditTextController extends LabeledFieldController {
     /**
      * Constructs a new instance of an edit text field.
      *
+     * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
      * @param isRequired    indicates if the field is required or not
@@ -25,8 +26,8 @@ public class EditTextController extends LabeledFieldController {
      * @param inputType     the content type of the text box as a mask; possible values are defined by {@link InputType}.
      *                      For example, to enable multi-line, enable {@code InputType.TYPE_TEXT_FLAG_MULTI_LINE}.
      */
-    public EditTextController(String name, String labelText, boolean isRequired, String placeholder, int inputType) {
-        super(name, labelText, isRequired);
+    public EditTextController(Context ctx, String name, String labelText, boolean isRequired, String placeholder, int inputType) {
+        super(ctx, name, labelText, isRequired);
         this.placeholder = placeholder;
         this.inputType = inputType;
     }
@@ -34,22 +35,24 @@ public class EditTextController extends LabeledFieldController {
     /**
      * Constructs a new instance of an edit text field.
      *
+     * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
      * @param isRequired    indicates if the field is required or not
      */
-    public EditTextController(String name, String labelText, boolean isRequired) {
-        this(name, labelText, isRequired, null, InputType.TYPE_CLASS_TEXT);
+    public EditTextController(Context ctx, String name, String labelText, boolean isRequired) {
+        this(ctx, name, labelText, isRequired, null, InputType.TYPE_CLASS_TEXT);
     }
 
     /**
      * Constructs a new instance of an edit text field.
      *
+     * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
      */
-    public EditTextController(String name, String labelText) {
-        this(name, labelText, false, null, InputType.TYPE_CLASS_TEXT);
+    public EditTextController(Context ctx, String name, String labelText) {
+        this(ctx, name, labelText, false, null, InputType.TYPE_CLASS_TEXT);
     }
 
     /**
@@ -71,8 +74,8 @@ public class EditTextController extends LabeledFieldController {
     }
 
     @Override
-    protected View constructFieldView(Context context) {
-        final EditText editText = new EditText(context);
+    protected View constructFieldView() {
+        final EditText editText = new EditText(getContext());
 
         editText.setSingleLine(!isMultiLine());
         if (placeholder != null) {

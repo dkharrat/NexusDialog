@@ -8,16 +8,29 @@ import android.view.View;
  * is referred by a name and has an associated {@link FormModel}.
  */
 public abstract class FormElementController {
+    private final Context context;
     private final String name;
     private FormModel model;
     private View view;
 
     /**
-     * Constructs a new instance with the specified name
-     * @param name the name of this instance
+     * Constructs a new instance with the specified name.
+     *
+     * @param ctx   the Android context
+     * @param name  the name of this instance
      */
-    protected FormElementController(String name) {
+    protected FormElementController(Context ctx, String name) {
+        this.context = ctx;
         this.name = name;
+    }
+
+    /**
+     * Returns the Android context associated with this element.
+     *
+     * @return the Android context associated with this element
+     */
+    public Context getContext() {
+        return context;
     }
 
     /**
@@ -45,12 +58,11 @@ public abstract class FormElementController {
     /**
      * Returns the associated view for this element.
      *
-     * @param context   the Android context
      * @return          the view for this element
      */
-    public View getView(Context context) {
+    public View getView() {
         if (view == null) {
-            view = constructView(context);
+            view = constructView();
         }
         return view;
     }
@@ -58,8 +70,7 @@ public abstract class FormElementController {
     /**
      * Constructs the view for this element.
      *
-     * @param context   the Android context
      * @return          a newly created view for this element
      */
-    protected abstract View constructView(Context context);
+    protected abstract View constructView();
 }

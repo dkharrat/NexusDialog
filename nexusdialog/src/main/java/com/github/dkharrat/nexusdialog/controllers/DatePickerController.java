@@ -27,13 +27,14 @@ public class DatePickerController extends LabeledFieldController {
     /**
      * Constructs a new instance of a date picker field.
      *
+     * @param ctx               the Android context
      * @param name              the name of the field
      * @param labelText         the label to display beside the field
      * @param isRequired        indicates if the field is required or not
      * @param displayFormat     the format of the date to show in the text box when a date is set
      */
-    public DatePickerController(String name, String labelText, boolean isRequired, SimpleDateFormat displayFormat) {
-        super(name, labelText, isRequired);
+    public DatePickerController(Context ctx, String name, String labelText, boolean isRequired, SimpleDateFormat displayFormat) {
+        super(ctx, name, labelText, isRequired);
         this.displayFormat = displayFormat;
     }
 
@@ -43,13 +44,13 @@ public class DatePickerController extends LabeledFieldController {
      * @param name              the name of the field
      * @param labelText         the label to display beside the field
      */
-    public DatePickerController(String name, String labelText) {
-        this(name, labelText, false, new SimpleDateFormat("MMM d, yyyy", Locale.getDefault()));
+    public DatePickerController(Context context, String name, String labelText) {
+        this(context, name, labelText, false, new SimpleDateFormat("MMM d, yyyy", Locale.getDefault()));
     }
 
     @Override
-    protected View constructFieldView(final Context context) {
-        final EditText editText = new EditText(context);
+    protected View constructFieldView() {
+        final EditText editText = new EditText(getContext());
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_DATETIME);
@@ -58,7 +59,7 @@ public class DatePickerController extends LabeledFieldController {
         editText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(context, editText);
+                showDatePickerDialog(getContext(), editText);
             }
         });
 
@@ -66,7 +67,7 @@ public class DatePickerController extends LabeledFieldController {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    showDatePickerDialog(context, editText);
+                    showDatePickerDialog(getContext(), editText);
                 }
             }
         });

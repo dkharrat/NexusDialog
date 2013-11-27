@@ -29,8 +29,8 @@ public abstract class ValidationError {
     /**
      * Returns a human-readable description of the validation error.
      *
-     * @param resources the application's resources
-     * @return          a string describing the error
+     * @param resources     the application's resources
+     * @return a string describing the error
      */
     public abstract String getMessage(Resources resources);
 }

@@ -3,6 +3,7 @@ package com.github.dkharrat.nexusdialog.samples.catalog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import com.github.dkharrat.nexusdialog.*;
 import com.github.dkharrat.nexusdialog.controllers.EditTextController;
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
@@ -25,13 +26,20 @@ public class BasicForm extends FormActivity {
 
     @Override
     protected void initForm() {
-        FormSectionController section = new FormSectionController("Personal Info");
-        section.addElement(new EditTextController(FIRST_NAME, "First name"));
-        section.addElement(new EditTextController(LAST_NAME, "Last name"));
-        section.addElement(new SelectionController(GENDER, "Gender", true, "Select",
+        FormSectionController section = new FormSectionController(this, "Personal Info");
+        section.addElement(new EditTextController(this, FIRST_NAME, "First name"));
+        section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
+        section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select",
                 new ArrayList<String>(Arrays.asList("Male", "Female")), true));
-        section.addElement(new SearchableSelectionController(FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
-        section.addElement(new CustomElement(CUSTOM_ELEM, "Custom Element"));
+        section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
+
+        CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
+        customElem.getButton().setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                MessageUtil.showAlertMessage("Greatness", "Thanks!", BasicForm.this);
+            }
+        });
+        section.addElement(customElem);
 
         addSection(section);
 

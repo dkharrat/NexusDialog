@@ -59,14 +59,15 @@ public class SearchableSelectionController extends LabeledFieldController {
     /**
      * Creates a new instance of a selection field.
      *
+     * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
      * @param isRequired    indicates if the field is required or not
      * @param placeholder   a placeholder text to show when the input field is empty
      * @param dataSource    the data source that provides the list of items to display
      */
-    public SearchableSelectionController(String name, String labelText, boolean isRequired, String placeholder, SelectionDataSource dataSource) {
-        super(name, labelText, isRequired);
+    public SearchableSelectionController(Context ctx, String name, String labelText, boolean isRequired, String placeholder, SelectionDataSource dataSource) {
+        super(ctx, name, labelText, isRequired);
         this.placeholder = placeholder;
         this.dataSource = dataSource;
 
@@ -74,9 +75,8 @@ public class SearchableSelectionController extends LabeledFieldController {
         loadItemsTask.execute(new Void[0]);
     }
 
-    @Override
-    protected View constructFieldView(final Context context) {
-        final EditText editText = new EditText(context);
+    protected View constructFieldView() {
+        final EditText editText = new EditText(getContext());
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -88,7 +88,7 @@ public class SearchableSelectionController extends LabeledFieldController {
         editText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSelectionDialog(context, editText);
+                showSelectionDialog(getContext(), editText);
             }
         });
 
@@ -96,7 +96,7 @@ public class SearchableSelectionController extends LabeledFieldController {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    showSelectionDialog(context, editText);
+                    showSelectionDialog(getContext(), editText);
                 }
             }
         });
