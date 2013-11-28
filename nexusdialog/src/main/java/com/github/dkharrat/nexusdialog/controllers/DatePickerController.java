@@ -19,6 +19,9 @@ import android.widget.EditText;
 
 /**
  * Represents a field that allows selecting a specific date via a date picker.
+ * <p/>
+ * For the field value, the associated FormModel must return a {@link Date} instance. No selected date can be
+ * represented by returning {@code null} for the value of the field.
  */
 public class DatePickerController extends LabeledFieldController {
     private DatePickerDialog datePickerDialog = null;
@@ -39,7 +42,7 @@ public class DatePickerController extends LabeledFieldController {
     }
 
     /**
-     * Constructs a new instance of a date picker field, with the selected displayed in "MMM d, yyyy" format.
+     * Constructs a new instance of a date picker field, with the selected date displayed in "MMM d, yyyy" format.
      *
      * @param name              the name of the field
      * @param labelText         the label to display beside the field

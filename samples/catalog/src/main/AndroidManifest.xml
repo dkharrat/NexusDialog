@@ -19,5 +19,7 @@
         </activity>
         <activity android:name=".BasicForm"
                   android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".SimpleExample"
+                  android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 </manifest>

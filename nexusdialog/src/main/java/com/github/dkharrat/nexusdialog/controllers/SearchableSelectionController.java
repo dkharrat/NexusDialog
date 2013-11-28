@@ -30,10 +30,13 @@ import com.github.dkharrat.nexusdialog.util.MessageUtil;
 
 /**
  * Represents a field that allows a user to select from a list of items, with the ability to search for specific items.
- * This field is useful when the number of items are large. While the list of items are retrieved from the data source,
- * a loading indicator is displayed.
- *
- * For similar functionality, but with a small number of items, use {@link SelectionController} instead.
+ * It also allows for free-form entry if the input text does not exist in the predefined list. This field is useful when
+ * the number of items are large. While the list of items are retrieved from the data source, a loading indicator is
+ * displayed. For similar functionality, but with a small number of items, use {@link SelectionController} instead.
+ * <p/>
+ * For the field value, the associated FormModel must return a String representing the currently selected item.
+ * If the value does not exist in the list, 'Other (x)' will be displayed, where 'x' is the field value. No selection
+ * can be represented by returning {@code null} for the value of the field.
  */
 public class SearchableSelectionController extends LabeledFieldController {
     private final String placeholder;

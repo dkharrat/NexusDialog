@@ -12,6 +12,8 @@ import android.widget.EditText;
  */
 public class EditTextController extends LabeledFieldController {
 
+    private final static int EDIT_TEXT_ID = 1001;
+
     private final int inputType;
     private final String placeholder;
 
@@ -56,12 +58,12 @@ public class EditTextController extends LabeledFieldController {
     }
 
     /**
-     * Indicates whether this text box has multi-line enabled.
+     * Returns the EditText view associated with this element.
      *
-     * @return  true if this text box has multi-line enabled, or false otherwise
+     * @return the EditText view associated with this element
      */
-    public boolean isMultiLine() {
-        return (inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
+    public EditText getEditText() {
+        return (EditText)getView().findViewById(EDIT_TEXT_ID);
     }
 
     /**
@@ -71,6 +73,15 @@ public class EditTextController extends LabeledFieldController {
      */
     public int getInputType() {
         return inputType;
+    }
+
+    /**
+     * Indicates whether this text box has multi-line enabled.
+     *
+     * @return  true if this text box has multi-line enabled, or false otherwise
+     */
+    public boolean isMultiLine() {
+        return (inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
     }
 
     @Override

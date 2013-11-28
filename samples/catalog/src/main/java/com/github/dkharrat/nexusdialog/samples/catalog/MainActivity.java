@@ -18,15 +18,26 @@ public class MainActivity extends ActionBarActivity {
 
         ListView listView = (ListView)findViewById(R.id.examples_list);
 
-        String[] items = {"Basic Form"};
+        String[] items = {"Simple Example", "Basic Form"};
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Intent intent = new Intent(MainActivity.this, BasicForm.class);
-                    startActivity(intent);
+                Intent intent;
+                switch(position) {
+                    case 0: {
+                        intent = new Intent(MainActivity.this, SimpleExample.class);
+                        break;
+                    }
+                    case 1: {
+                        intent = new Intent(MainActivity.this, BasicForm.class);
+                        break;
+                    }
+                    default: {
+                        throw new Error("Unhandled list item " + position);
+                    }
                 }
+                startActivity(intent);
             }
         });
     }

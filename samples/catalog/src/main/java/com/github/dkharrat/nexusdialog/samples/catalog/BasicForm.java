@@ -12,10 +12,19 @@ import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController
 import com.github.dkharrat.nexusdialog.controllers.SelectionController;
 import com.github.dkharrat.nexusdialog.util.MessageUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Demonstrates the following functionality:
+ * <ul>
+ *  <li>SearchableSelectionController</li>
+ *  <li>Event handling</li>
+ *  <li>Using a Custom Element</li>
+ *  <li>Basic Validations</li>
+ *  <li>Property change notifications</li>
+ * </ul>
+ */
 public class BasicForm extends FormActivity {
 
     private final static String FIRST_NAME = "firstName";
@@ -35,14 +44,14 @@ public class BasicForm extends FormActivity {
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
         customElem.getButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                MessageUtil.showAlertMessage("Greatness", "Thanks!", BasicForm.this);
+                MessageUtil.showAlertMessage("Greatness", "You're awesome!", BasicForm.this);
             }
         });
         section.addElement(customElem);
 
         addSection(section);
 
-        setTitle("Simple Form");
+        setTitle("Basic Form");
     }
 
     private final SelectionDataSource dataSource = new SelectionDataSource() {

@@ -13,8 +13,15 @@ import com.github.dkharrat.nexusdialog.R;
 
 /**
  * Represents a field that allows a user to select from a list of items.
+ * <p/>
+ * For the field value, the associated FormModel must return either a String or a 0-based index, representing the
+ * currently selected item. Which representation to use is specified by the constructor. In either representation, no
+ * selection can be represented by returning {@code null} for the value of the field.
  */
 public class SelectionController extends LabeledFieldController {
+
+    private final static int SPINNER_ID = 1001;
+
     private final String prompt;
     private final List<String> items;
     private final List<?> values;
@@ -56,9 +63,19 @@ public class SelectionController extends LabeledFieldController {
         this.values = values;
     }
 
+    /**
+     * Returns the Spinner view associated with this element.
+     *
+     * @return the Spinner view associated with this element
+     */
+    public Spinner getSpinner() {
+        return (Spinner)getView().findViewById(SPINNER_ID);
+    }
+
     @Override
     protected View constructFieldView() {
         Spinner spinnerView = new Spinner(getContext());
+        spinnerView.setId(SPINNER_ID);
         spinnerView.setPrompt(prompt);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
