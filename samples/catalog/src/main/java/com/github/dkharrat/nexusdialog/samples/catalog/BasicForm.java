@@ -12,6 +12,8 @@ import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController
 import com.github.dkharrat.nexusdialog.controllers.SelectionController;
 import com.github.dkharrat.nexusdialog.util.MessageUtil;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,8 +38,8 @@ public class BasicForm extends FormActivity {
     @Override
     protected void initForm() {
         FormSectionController section = new FormSectionController(this, "Personal Info");
-        section.addElement(new EditTextController(this, FIRST_NAME, "First name"));
-        section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
+        section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
+        section.addElement(new EditTextController(this, LAST_NAME, "Last name", null));
         section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
         section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
 
@@ -50,6 +52,15 @@ public class BasicForm extends FormActivity {
         section.addElement(customElem);
 
         addSection(section);
+
+        getModel().addPropertyChangeListener(FIRST_NAME, new PropertyChangeListener() {
+            @Override public void propertyChange(PropertyChangeEvent event) {
+                MessageUtil.showAlertMessage(
+                        "First name changed!",
+                        "Value was: " + event.getOldValue() + ", now: " + event.getNewValue(),
+                        BasicForm.this);
+            }
+        });
 
         setTitle("Basic Form");
     }

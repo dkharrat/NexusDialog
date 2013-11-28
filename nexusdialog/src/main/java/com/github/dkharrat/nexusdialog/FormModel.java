@@ -57,20 +57,38 @@ public abstract class FormModel {
     }
 
     /**
-     * Subscribes {@code listener} to change notifications for all properties.
+     * Subscribes {@code listener} to change notifications for all fields.
      *
-     * @see {@link PropertyChangeSupport#addPropertyChangeListener}
+     * @see {@link PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)}
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
     /**
-     * Unsubscribes {@code listener} from change notifications for all properties.
+     * Subscribes {@code listener} to change notifications for the specified field name.
+     *
+     * @see {@link PropertyChangeSupport#addPropertyChangeListener(String, java.beans.PropertyChangeListener)}
+     */
+    public void addPropertyChangeListener(String fieldName, PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(fieldName, listener);
+    }
+
+    /**
+     * Unsubscribes {@code listener} from change notifications for all fields.
      *
      * @see {@link PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)}
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    /**
+     * Unsubscribes {@code listener} from change notifications for the specified field name.
+     *
+     * @see {@link PropertyChangeSupport#removePropertyChangeListener(String, java.beans.PropertyChangeListener)}
+     */
+    public void removePropertyChangeListener(String fieldName, PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(fieldName, listener);
     }
 }

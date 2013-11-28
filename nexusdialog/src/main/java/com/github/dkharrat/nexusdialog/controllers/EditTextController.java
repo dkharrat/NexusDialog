@@ -23,12 +23,12 @@ public class EditTextController extends LabeledFieldController {
      * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
+     * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
      * @param isRequired    indicates if the field is required or not
-     * @param placeholder   a placeholder text to show when the input field is empty
      * @param inputType     the content type of the text box as a mask; possible values are defined by {@link InputType}.
      *                      For example, to enable multi-line, enable {@code InputType.TYPE_TEXT_FLAG_MULTI_LINE}.
      */
-    public EditTextController(Context ctx, String name, String labelText, boolean isRequired, String placeholder, int inputType) {
+    public EditTextController(Context ctx, String name, String labelText, String placeholder, boolean isRequired, int inputType) {
         super(ctx, name, labelText, isRequired);
         this.placeholder = placeholder;
         this.inputType = inputType;
@@ -40,10 +40,11 @@ public class EditTextController extends LabeledFieldController {
      * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
+     * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
      * @param isRequired    indicates if the field is required or not
      */
-    public EditTextController(Context ctx, String name, String labelText, boolean isRequired) {
-        this(ctx, name, labelText, isRequired, null, InputType.TYPE_CLASS_TEXT);
+    public EditTextController(Context ctx, String name, String labelText, String placeholder, boolean isRequired) {
+        this(ctx, name, labelText, placeholder, isRequired, InputType.TYPE_CLASS_TEXT);
     }
 
     /**
@@ -52,9 +53,10 @@ public class EditTextController extends LabeledFieldController {
      * @param ctx           the Android context
      * @param name          the name of the field
      * @param labelText     the label to display beside the field
+     * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
      */
-    public EditTextController(Context ctx, String name, String labelText) {
-        this(ctx, name, labelText, false, null, InputType.TYPE_CLASS_TEXT);
+    public EditTextController(Context ctx, String name, String labelText, String placeholder) {
+        this(ctx, name, labelText, placeholder, false, InputType.TYPE_CLASS_TEXT);
     }
 
     /**
@@ -94,19 +96,12 @@ public class EditTextController extends LabeledFieldController {
         }
         editText.setInputType(inputType);
         refreshView(editText);
-        editText.addTextChangedListener(new TextWatcher() {
-
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void afterTextChanged(Editable s) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                getModel().setValue(getName(), editText.getText().toString());
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    getModel().setValue(getName(), editText.getText().toString());
+                }
             }
         });
 

@@ -14,8 +14,8 @@ public class SimpleExample extends FormActivity {
 
     @Override protected void initForm() {
         FormSectionController section = new FormSectionController(this, "Personal Info");
-        section.addElement(new EditTextController(this, "firstName", "First name"));
-        section.addElement(new EditTextController(this, "lastName", "Last name"));
+        section.addElement(new EditTextController(this, "firstName", "First name", null));
+        section.addElement(new EditTextController(this, "lastName", "Last name", null));
         section.addElement(new SelectionController(this, "gender", "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
 
         addSection(section);
