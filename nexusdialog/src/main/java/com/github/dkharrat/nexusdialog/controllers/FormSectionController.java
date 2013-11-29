@@ -17,9 +17,9 @@ import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.FormElementController;
 
 /**
- * Represents a section in a form. A section represents a grouping of {@code FormElementController}s, are displayed
- * in the form accordingly. It provides a visual cue to the user about the organization of the fields in the form. A
- * section can optionally have a title.
+ * Represents a section in a form. A form section represents a grouping of {@code FormElementController}s that are
+ * displayed in the form accordingly. It provides a visual cue to the user about the organization of the fields in the
+ * form. A section can optionally have a header title.
  */
 public class FormSectionController extends FormElementController {
 
