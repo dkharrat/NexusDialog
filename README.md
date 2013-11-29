@@ -6,6 +6,10 @@ NexusDialog is a framework that allows you to easily and quickly create forms in
 for apps having many form-based screens, since it reduces the boilerplate code to setup the view layout and tying things
 together in the Activity. Currently, it supports Android API 10+
 
+This library follows [semantic versioning](http://semver.org/). Note that since this library is still active in
+development, new releases might introduce interface-breaking changes, which will be indicated in the changelog.
+NexusDialog 1.0.0 will be the first stable release.
+
 A Simple Example
 ----------------
 To give you an idea of the simplicity of NexusDialog, here's a screenshot of a simple example:
@@ -14,12 +18,9 @@ To give you an idea of the simplicity of NexusDialog, here's a screenshot of a s
 
 Here's the code for that example (less than 7 lines of code!):
 
-    import com.github.dkharrat.nexusdialog.FormActivity;
-    import com.github.dkharrat.nexusdialog.controllers.EditTextController;
-    import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
-    import com.github.dkharrat.nexusdialog.controllers.SelectionController;
-
     import java.util.Arrays;
+    import com.github.dkharrat.nexusdialog.FormActivity;
+    import com.github.dkharrat.nexusdialog.controllers.*;
 
     public class SimpleExample extends FormActivity {
 
@@ -35,22 +36,24 @@ Here's the code for that example (less than 7 lines of code!):
         }
     }
 
+For more examples, browse the [samples](http://github.com/dkharrat/nexusdialog/samples) directory.
+
 Features
 --------
-NexusDialog supports many built-in fields for your form, like textboxes, date pickers, spinners, etc. The framework is
+NexusDialog supports many built-in fields for your form, like text boxes, date pickers, spinners, etc. The framework is
 also designed to be extensible so that you can easily add custom form elements if needed. Contributions are also
-welcome! If you've implemented a custom control is useful, pull requests are welcome and appreciated! Currently, the
-following form elements are supported:
+welcome! If you've implemented a custom control that is useful, pull requests are welcome and appreciated! Currently,
+the following form elements are supported:
 
 * **EditTextController**: EditText view that allows for free-form text input.
 * **DatePickerController**: Displays a date picker to allow choosing a specific date
 * **SelectionController**: Displays a spinner with a list of item to select from
-* **SearchableSelectionController**: Displays a list of items to select from, with the ability to search the list and
-    also allow free-form text.
+* **SearchableSelectionController**: Displays a (typically large) list of items to select from, with the ability to
+    search the list and also allow free-form text.
 
 Apps Using NexusData
 --------------------
-Do you have an app that's utilizing NexusData? Let me know and I'll add a link to it here!
+Do you have an app that's utilizing NexusData? [Let me know](mailto:dkharrat@gmail.com) and I'll add a link to it here!
 
 Planned Features
 ----------------
@@ -78,6 +81,10 @@ TODO
 How to Use NexusDialog
 ----------------------
 TODO
+
+Documentation
+-------------
+See the current [Javadoc](javadoc)
 
 Styling
 -------
@@ -111,22 +118,27 @@ Creating IntelliJ project
 19. Click the 'Android' item under the 'lib' module and check the 'Library module' checkbox
 20. Click 'OK' to close the Project Structure dialog
 
-Developed By
+Contributing
+------------
+Contributions via pull requests are welcome! For suggestions, feedback, or feature requests, please submit an issue.
+
+Author
 ------------
 Dia Kharrat - dkharrat@gmail.com
+Twitter: http://twitter.com/dkharrat
 
 License
 -------
-Copyright 2013 Dia Kharrat
+    Copyright 2013 Dia Kharrat
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+       http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
