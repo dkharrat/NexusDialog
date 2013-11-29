@@ -24,7 +24,7 @@ import com.github.dkharrat.nexusdialog.validations.ValidationError;
  * <a href="http://developer.android.com/guide/topics/ui/actionbar.html">ActionBar</a> support on older Android API
  * versions which don't natively support it. If you don't need ActionBar support for your Activity, you can disable it
  * by calling <code>getSupportActionBar().hide()</code> in the {@link #initForm} method.
- *
+ * <p/>
  * The form's data is backed by a model represented by {@link FormModel}, which provides a generic interface to access
  * the data. Form elements use the model to retrieve current field values and set them upon user input. By default,
  * <code>FormActivity</code> uses a default Map-based model keyed by the element's names. You can also use a custom
@@ -195,7 +195,7 @@ public abstract class FormActivity extends ActionBarActivity {
 
     private FormModel model = new FormModel() {
 
-        private Map<String,Object> data = new HashMap<String,Object>();
+        private final Map<String,Object> data = new HashMap<String,Object>();
 
         @Override
         public Object getBackingValue(String name) {

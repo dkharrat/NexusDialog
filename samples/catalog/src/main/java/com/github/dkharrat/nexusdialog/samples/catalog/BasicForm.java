@@ -62,6 +62,8 @@ public class BasicForm extends FormActivity {
             }
         });
 
+        getModel().setValue(LAST_NAME, "Smith");
+
         setTitle("Basic Form");
     }
 
