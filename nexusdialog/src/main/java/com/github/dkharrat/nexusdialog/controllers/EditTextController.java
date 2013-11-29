@@ -60,6 +60,17 @@ public class EditTextController extends LabeledFieldController {
     }
 
     /**
+     * Constructs a new instance of an edit text field.
+     *
+     * @param ctx           the Android context
+     * @param name          the name of the field
+     * @param labelText     the label to display beside the field
+     */
+    public EditTextController(Context ctx, String name, String labelText) {
+        this(ctx, name, labelText, null, false, InputType.TYPE_CLASS_TEXT);
+    }
+
+    /**
      * Returns the EditText view associated with this element.
      *
      * @return the EditText view associated with this element
