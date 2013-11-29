@@ -3,8 +3,6 @@ package com.github.dkharrat.nexusdialog;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import com.github.dkharrat.nexusdialog.util.ObjectUtil;
-
 /**
  * <code>FormModel</code> is an abstract class that represents the backing data for a form. It provides a mechanism
  * for form elements to retrieve their values to display to the user and persist changes to the model upon changes.
@@ -50,10 +48,14 @@ public abstract class FormModel {
      */
     public final void setValue(String name, Object newValue) {
         Object curValue = getBackingValue(name);
-        if (!ObjectUtil.objectsEqual(curValue, newValue)) {
+        if (!objectsEqual(curValue, newValue)) {
             setBackingValue(name, newValue);
             propertyChangeSupport.firePropertyChange(name, curValue, newValue);
         }
+    }
+
+    private static boolean objectsEqual(Object a, Object b) {
+        return a == b || (a != null && a.equals(b));
     }
 
     /**
