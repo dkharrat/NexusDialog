@@ -22,7 +22,7 @@ public class EditTextController extends LabeledFieldController {
      *
      * @param ctx           the Android context
      * @param name          the name of the field
-     * @param labelText     the label to display beside the field
+     * @param labelText     the label to display beside the field. Set to {@code null} to not show a label.
      * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
      * @param isRequired    indicates if the field is required or not
      * @param inputType     the content type of the text box as a mask; possible values are defined by {@link InputType}.

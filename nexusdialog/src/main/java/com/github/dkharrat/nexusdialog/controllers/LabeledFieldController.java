@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.dkharrat.nexusdialog.R;
@@ -28,7 +29,8 @@ public abstract class LabeledFieldController extends FormElementController {
      *
      * @param ctx           the Android context
      * @param name          the name of the field
-     * @param labelText     the label to display beside the field
+     * @param labelText     the label to display beside the field. If null, no label is displayed and the field will
+     *                      occupy the entire length of the row.
      * @param isRequired    indicates whether this field is required. If true, this field checks for a non-empty or
      *                      non-null value upon validation. Otherwise, this field can be empty.
      */
@@ -118,7 +120,11 @@ public abstract class LabeledFieldController extends FormElementController {
         View view = inflater.inflate(R.layout.form_labeled_element, null);
 
         TextView label = (TextView)view.findViewById(R.id.field_label);
-        label.setText(labelText);
+        if (labelText == null) {
+            label.setVisibility(View.GONE);
+        } else {
+            label.setText(labelText);
+        }
 
         FrameLayout container = (FrameLayout)view.findViewById(R.id.field_container);
         container.addView(getFieldView());

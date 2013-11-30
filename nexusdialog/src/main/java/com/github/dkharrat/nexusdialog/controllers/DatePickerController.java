@@ -34,7 +34,7 @@ public class DatePickerController extends LabeledFieldController {
      *
      * @param ctx               the Android context
      * @param name              the name of the field
-     * @param labelText         the label to display beside the field
+     * @param labelText         the label to display beside the field. Set to {@code null} to not show a label.
      * @param isRequired        indicates if the field is required or not
      * @param displayFormat     the format of the date to show in the text box when a date is set
      */

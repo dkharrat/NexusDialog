@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
+    android:paddingLeft="?android:attr/scrollbarSize"
     android:paddingRight="?android:attr/scrollbarSize">
     
     <TextView
@@ -13,7 +14,6 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:paddingLeft="9dp"
         />
     
     <FrameLayout

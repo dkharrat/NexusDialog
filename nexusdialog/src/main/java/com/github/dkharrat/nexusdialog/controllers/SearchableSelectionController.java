@@ -66,7 +66,7 @@ public class SearchableSelectionController extends LabeledFieldController {
      *
      * @param ctx           the Android context
      * @param name          the name of the field
-     * @param labelText     the label to display beside the field
+     * @param labelText     the label to display beside the field. Set to {@code null} to not show a label.
      * @param isRequired    indicates if the field is required or not
      * @param placeholder   a placeholder text to show when the input field is empty
      * @param dataSource    the data source that provides the list of items to display

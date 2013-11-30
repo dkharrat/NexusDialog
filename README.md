@@ -65,8 +65,6 @@ planned:
 * Support secure text for EditTextController
 * Support sliders
 * Allow disabling free-form text in SearchableSelectionController
-* Make label text optional for labeled fields
-* Automatically refresh form when form model changes
 
 How to Add NexusDialog to Your Project
 --------------------------------------
