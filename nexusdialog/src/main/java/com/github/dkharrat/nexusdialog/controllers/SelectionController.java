@@ -105,12 +105,12 @@ public class SelectionController extends LabeledFieldController {
             }
         });
 
-        refreshView(spinnerView);
+        refresh(spinnerView);
 
         return spinnerView;
     }
 
-    private void refreshView(Spinner spinnerView) {
+    private void refresh(Spinner spinner) {
         Object value = getModel().getValue(getName());
         int selectionIndex = 0;
 
@@ -125,6 +125,11 @@ public class SelectionController extends LabeledFieldController {
             selectionIndex = (Integer)value;
         }
 
-        spinnerView.setSelection(selectionIndex);
+        spinner.setSelection(selectionIndex);
+    }
+
+    @Override
+    public void refresh() {
+        refresh(getSpinner());
     }
 }

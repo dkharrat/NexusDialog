@@ -100,13 +100,14 @@ public class EditTextController extends LabeledFieldController {
     @Override
     protected View constructFieldView() {
         final EditText editText = new EditText(getContext());
+        editText.setId(EDIT_TEXT_ID);
 
         editText.setSingleLine(!isMultiLine());
         if (placeholder != null) {
             editText.setHint(placeholder);
         }
         editText.setInputType(inputType);
-        refreshView(editText);
+        refresh(editText);
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -119,8 +120,13 @@ public class EditTextController extends LabeledFieldController {
         return editText;
     }
 
-    private void refreshView(EditText editText) {
+    private void refresh(EditText editText) {
         Object value = getModel().getValue(getName());
         editText.setText(value != null ? value.toString() : "");
+    }
+
+    @Override
+    public void refresh() {
+        refresh(getEditText());
     }
 }

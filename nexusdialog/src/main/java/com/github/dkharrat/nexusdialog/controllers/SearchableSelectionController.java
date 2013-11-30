@@ -39,6 +39,8 @@ import com.github.dkharrat.nexusdialog.util.MessageUtil;
  * can be represented by returning {@code null} for the value of the field.
  */
 public class SearchableSelectionController extends LabeledFieldController {
+    private final static int EDIT_TEXT_ID = 1001;
+
     private final String placeholder;
     private Dialog selectionDialog = null;
     private final SelectionDataSource dataSource;
@@ -80,6 +82,7 @@ public class SearchableSelectionController extends LabeledFieldController {
 
     protected View constructFieldView() {
         final EditText editText = new EditText(getContext());
+        editText.setId(EDIT_TEXT_ID);
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -87,7 +90,7 @@ public class SearchableSelectionController extends LabeledFieldController {
         if (placeholder != null) {
             editText.setHint(placeholder);
         }
-        refreshView(editText);
+        refresh(editText);
         editText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,9 +210,18 @@ public class SearchableSelectionController extends LabeledFieldController {
         }
     }
 
-    private void refreshView(EditText editText) {
+    private EditText getEditText() {
+        return (EditText)getView().findViewById(EDIT_TEXT_ID);
+    }
+
+    private void refresh(EditText editText) {
         String value = (String)getModel().getValue(getName());
         editText.setText(value != null ? value : "");
+    }
+
+    @Override
+    public void refresh() {
+        refresh(getEditText());
     }
 
     private class LoadItemsTask extends AsyncTask<Void, Void, List<String>> {

@@ -176,4 +176,11 @@ public class FormSectionController extends FormElementController {
 
         return view;
     }
+
+    @Override
+    public void refresh() {
+        for (FormElementController element : orderedElements) {
+            element.refresh();
+        }
+    }
 }

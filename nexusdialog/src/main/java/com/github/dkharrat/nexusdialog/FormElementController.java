@@ -73,4 +73,9 @@ public abstract class FormElementController {
      * @return          a newly created view for this element
      */
     protected abstract View constructView();
+
+    /**
+     * Refreshes the view of this element to reflect current model.
+     */
+    public abstract void refresh();
 }

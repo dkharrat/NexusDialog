@@ -1,5 +1,7 @@
 package com.github.dkharrat.nexusdialog;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,7 @@ public abstract class FormActivity extends ActionBarActivity {
 
         initForm();
         setupView();
+        registerFormModelListener();
     }
 
     /**
@@ -72,6 +75,13 @@ public abstract class FormActivity extends ActionBarActivity {
      */
     protected void setModel(FormModel formModel) {
         this.model = formModel;
+        registerFormModelListener();
+    }
+
+    private void registerFormModelListener() {
+        // unregister listener first to make sure we only have one listener registered.
+        getModel().removePropertyChangeListener(modelListener);
+        getModel().addPropertyChangeListener(modelListener);
     }
 
     /**
@@ -136,6 +146,15 @@ public abstract class FormActivity extends ActionBarActivity {
         }
 
         return count;
+    }
+
+    /**
+     * Refreshes the view of all elements in this form to reflect current model values
+     */
+    protected void refreshElements() {
+        for (FormSectionController section : getSections()) {
+            section.refresh();
+        }
     }
 
     /**
@@ -205,6 +224,12 @@ public abstract class FormActivity extends ActionBarActivity {
         @Override
         public void setBackingValue(String name, Object value) {
             data.put(name, value);
+        }
+    };
+
+    private PropertyChangeListener modelListener = new PropertyChangeListener() {
+        @Override public void propertyChange(PropertyChangeEvent event) {
+            getElement(event.getPropertyName()).refresh();
         }
     };
 }

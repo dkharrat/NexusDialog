@@ -24,6 +24,8 @@ import android.widget.EditText;
  * represented by returning {@code null} for the value of the field.
  */
 public class DatePickerController extends LabeledFieldController {
+    private final static int EDIT_TEXT_ID = 1001;
+
     private DatePickerDialog datePickerDialog = null;
     private final SimpleDateFormat displayFormat;
 
@@ -54,11 +56,12 @@ public class DatePickerController extends LabeledFieldController {
     @Override
     protected View constructFieldView() {
         final EditText editText = new EditText(getContext());
+        editText.setId(EDIT_TEXT_ID);
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_DATETIME);
         editText.setKeyListener(null);
-        refreshView(editText);
+        refresh(editText);
         editText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,8 +113,16 @@ public class DatePickerController extends LabeledFieldController {
         }
     }
 
-    private void refreshView(EditText editText) {
+    private EditText getEditText() {
+        return (EditText)getView().findViewById(EDIT_TEXT_ID);
+    }
+
+    private void refresh(EditText editText) {
         Date value = (Date)getModel().getValue(getName());
         editText.setText(value != null ? displayFormat.format(value) : "");
+    }
+
+    public void refresh() {
+        refresh(getEditText());
     }
 }

@@ -21,4 +21,8 @@ public class CustomElement extends LabeledFieldController {
     public Button getButton() {
         return (Button)getView().findViewById(R.id.btn);
     }
+
+    public void refresh() {
+        // nothing to refresh
+    }
 }

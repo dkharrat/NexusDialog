@@ -46,7 +46,9 @@ public class BasicForm extends FormActivity {
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
         customElem.getButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                MessageUtil.showAlertMessage("Greatness", "You're awesome!", BasicForm.this);
+                // setting a field value will automatically refresh the form element
+                getModel().setValue(FAVORITE_COLOR, "Black");
+                MessageUtil.showAlertMessage("Greatness", "You just changed your favorite color :) Check that field to find out what it is.", BasicForm.this);
             }
         });
         section.addElement(customElem);
