@@ -45,6 +45,7 @@ also designed to be extensible so that you can easily add custom form elements i
 welcome! If you've implemented a custom control that is useful, pull requests are welcome and appreciated! Currently,
 the following form elements are supported:
 
+* `ValueController`: Shows a TextView containing a value
 * `EditTextController`: EditText view that allows for free-form text input.
 * `DatePickerController`: Displays a date picker to allow choosing a specific date
 * `SelectionController`: Displays a spinner with a list of item to select from
@@ -154,7 +155,9 @@ forms right away! The main classes you will be working with the most are:
 
             FormSectionController section2 = new FormSectionController(this, "Account");
             section2.addElement(new EditTextController(this, "username", "Username"));
-            section2.addElement(new EditTextController(this, "password", "Password"));
+            section2.addElement(new EditTextController(this, "password", "Password") {{
+                setSecureEntry(true);
+            }});
             addSection(section2);
         }
     }

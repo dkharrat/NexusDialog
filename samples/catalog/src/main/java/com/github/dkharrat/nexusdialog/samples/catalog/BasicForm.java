@@ -5,11 +5,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import com.github.dkharrat.nexusdialog.*;
-import com.github.dkharrat.nexusdialog.controllers.EditTextController;
-import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
-import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController;
+import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
-import com.github.dkharrat.nexusdialog.controllers.SelectionController;
 import com.github.dkharrat.nexusdialog.util.MessageUtil;
 
 import java.beans.PropertyChangeEvent;
@@ -31,6 +28,7 @@ public class BasicForm extends FormActivity {
 
     private final static String FIRST_NAME = "firstName";
     private final static String LAST_NAME = "lastName";
+    private final static String FULL_NAME = "fullName";
     private final static String GENDER = "gender";
     private final static String FAVORITE_COLOR = "favColor";
     private final static String CUSTOM_ELEM = "customElem";
@@ -39,31 +37,36 @@ public class BasicForm extends FormActivity {
     protected void initForm() {
         FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
-        section.addElement(new EditTextController(this, LAST_NAME, "Last name", "Last name"));
+        section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
+        section.addElement(new ValueController(this, FULL_NAME, "Full name"));
         section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
         section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
 
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
         customElem.getButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                // setting a field value will automatically refresh the form element
-                getModel().setValue(FAVORITE_COLOR, "Green");
-                MessageUtil.showAlertMessage("Greatness", "You just changed your favorite color :) Check that field to find out what it is.", BasicForm.this);
+                MessageUtil.showAlertMessage("Greatness", "Yay!!", BasicForm.this);
             }
         });
         section.addElement(customElem);
 
         addSection(section);
 
-        getModel().addPropertyChangeListener(FIRST_NAME, new PropertyChangeListener() {
+        PropertyChangeListener nameFieldListener = new PropertyChangeListener() {
             @Override public void propertyChange(PropertyChangeEvent event) {
-                MessageUtil.showAlertMessage(
-                        "First name changed!",
-                        "Value was: " + event.getOldValue() + ", now: " + event.getNewValue(),
-                        BasicForm.this);
-            }
-        });
+                Object firstName = getModel().getValue(FIRST_NAME);
+                Object lastName = getModel().getValue(LAST_NAME);
 
+                // setting a field value will automatically refresh the form element
+                getModel().setValue(FULL_NAME, firstName + " " + lastName);
+            }
+        };
+
+        // add a listener to get notifications for any field changes
+        getModel().addPropertyChangeListener(FIRST_NAME, nameFieldListener);
+        getModel().addPropertyChangeListener(LAST_NAME, nameFieldListener);
+
+        // initialize field with a value
         getModel().setValue(LAST_NAME, "Smith");
 
         setTitle("Basic Form");
