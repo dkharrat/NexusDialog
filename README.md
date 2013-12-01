@@ -36,7 +36,7 @@ Here's the code for that example (less than 7 lines of real code!):
         }
     }
 
-For more examples, browse the [samples](http://github.com/dkharrat/nexusdialog/samples) directory.
+For more examples, browse the [samples](http://github.com/dkharrat/nexus-dialog/tree/master/samples) directory.
 
 Features
 --------
