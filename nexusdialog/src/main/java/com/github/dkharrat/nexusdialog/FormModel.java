@@ -61,7 +61,7 @@ public abstract class FormModel {
     /**
      * Subscribes {@code listener} to change notifications for all fields.
      *
-     * @see {@link PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)}
+     * @see PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
@@ -70,7 +70,7 @@ public abstract class FormModel {
     /**
      * Subscribes {@code listener} to change notifications for the specified field name.
      *
-     * @see {@link PropertyChangeSupport#addPropertyChangeListener(String, java.beans.PropertyChangeListener)}
+     * @see PropertyChangeSupport#addPropertyChangeListener(String, java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(String fieldName, PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(fieldName, listener);
@@ -79,7 +79,7 @@ public abstract class FormModel {
     /**
      * Unsubscribes {@code listener} from change notifications for all fields.
      *
-     * @see {@link PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)}
+     * @see PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
@@ -88,7 +88,7 @@ public abstract class FormModel {
     /**
      * Unsubscribes {@code listener} from change notifications for the specified field name.
      *
-     * @see {@link PropertyChangeSupport#removePropertyChangeListener(String, java.beans.PropertyChangeListener)}
+     * @see PropertyChangeSupport#removePropertyChangeListener(String, java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(String fieldName, PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(fieldName, listener);

@@ -89,7 +89,7 @@ public class FormSectionController extends FormElementController {
      * Adds a collection of form elements to this section.
      *
      * @param values    the form elements to add
-     * @see {@link #addElement(com.github.dkharrat.nexusdialog.FormElementController)}
+     * @see #addElement(com.github.dkharrat.nexusdialog.FormElementController)
      */
     public void addElements(Collection<FormElementController> values) {
         for (FormElementController element : values) {
