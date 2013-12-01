@@ -14,7 +14,7 @@ A Simple Example
 ----------------
 To give you an idea of the simplicity of NexusDialog, here's a screenshot of a simple example:
 
-[screenshot]
+![screenshot](http://dkharrat.github.io/nexus-dialog/images/screenshot01.png "NexusDialog Screenshot")
 
 Here's the code for that example (less than 7 lines of real code!):
 
