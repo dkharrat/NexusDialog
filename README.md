@@ -52,9 +52,9 @@ the following form elements are supported:
 * `SearchableSelectionController`: Displays a (typically large) list of items to select from, with the ability to
     search the list and also allow free-form text.
 
-Apps Using NexusData
+Apps Using NexusDialog
 --------------------
-Do you have an app that's utilizing NexusData? [Let me know](mailto:dkharrat@gmail.com) and I'll add a link to it here!
+Do you have an app that's utilizing NexusDialog? [Let me know](mailto:dkharrat@gmail.com) and I'll add a link to it here!
 
 Planned Features
 ----------------
@@ -196,9 +196,9 @@ TODO
 
 Adding Custom Elements
 ----------------------
-If the built-in form controls provided by NexusDialog don't meet your needs, you can easily extend NexusData to provide
-custom form elements. The common parent class for all form elements is `FormElementController`. Among other things,
-`FormElementController` tells NexusDialog how to construct the view to display in the form.
+If the built-in form controls provided by NexusDialog don't meet your needs, you can easily extend NexusDialog to
+provide custom form elements. The common parent class for all form elements is `FormElementController`. Among other
+things, `FormElementController` tells NexusDialog how to construct the view to display in the form.
 
 Typically your custom element falls under one of these cases:
 
