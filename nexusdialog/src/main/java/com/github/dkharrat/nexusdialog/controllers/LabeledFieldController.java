@@ -115,7 +115,7 @@ public abstract class LabeledFieldController extends FormElementController {
     protected abstract View constructFieldView();
 
     @Override
-    protected View constructView() {
+    protected View createView() {
         LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.form_labeled_element, null);
 

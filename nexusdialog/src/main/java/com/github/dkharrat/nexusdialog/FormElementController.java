@@ -62,9 +62,18 @@ public abstract class FormElementController {
      */
     public View getView() {
         if (view == null) {
-            view = constructView();
+            view = createView();
         }
         return view;
+    }
+
+    /**
+     * Indicates if the view has been created.
+     *
+     * @return true if the view was created, or false otherwise.
+     */
+    public boolean isViewCreated() {
+        return view != null;
     }
 
     /**
@@ -72,7 +81,7 @@ public abstract class FormElementController {
      *
      * @return          a newly created view for this element
      */
-    protected abstract View constructView();
+    protected abstract View createView();
 
     /**
      * Refreshes the view of this element to reflect current model.

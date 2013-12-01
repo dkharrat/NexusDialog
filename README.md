@@ -204,7 +204,7 @@ Typically your custom element falls under one of these cases:
    `LabeledFieldController` which can provide the label functionality for you.
 
 2. Your custom element needs full customization for how it's displayed: in this case, inherit from
-   `FormElementController` and implement the `constructView` method to tell NexusDialog how to create the custom view.
+   `FormElementController` and implement the `createView` method to tell NexusDialog how to create the custom view.
 
 Browse through the _catalog_ sample for an example of implementing a custom element, or go over the code for the
 built-in form elements to get an idea how they work.

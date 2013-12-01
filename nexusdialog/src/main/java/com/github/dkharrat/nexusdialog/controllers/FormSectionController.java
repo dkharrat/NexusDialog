@@ -158,7 +158,7 @@ public class FormSectionController extends FormElementController {
     }
 
     @Override
-    protected View constructView() {
+    protected View createView() {
         LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view;

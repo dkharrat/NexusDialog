@@ -14,7 +14,7 @@ public class EditTextController extends LabeledFieldController {
 
     private final static int EDIT_TEXT_ID = 1001;
 
-    private final int inputType;
+    private int inputType;
     private final String placeholder;
 
     /**
@@ -95,6 +95,22 @@ public class EditTextController extends LabeledFieldController {
      */
     public boolean isMultiLine() {
         return (inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
+    }
+
+    /**
+     * Enables or disables multi-line input for the text field.
+     *
+     * @param multiLine if true, multi-line input is allowed, otherwise, the field will only allow a single line.
+     */
+    public void setMultiLine(boolean multiLine) {
+        if (multiLine) {
+            inputType = inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+        } else {
+            inputType = inputType & ~InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+        }
+        if (isViewCreated()) {
+            getEditText().setInputType(inputType);
+        }
     }
 
     @Override
