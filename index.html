@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="NexusDialog : Library that allows you to easily and quickly create forms in Android with little code" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>NexusDialog</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dkharrat/nexus-dialog">View on GitHub</a>
+
+          <h1 id="project_title">NexusDialog</h1>
+          <h2 id="project_tagline">Library that allows you to easily and quickly create forms in Android with little code</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/dkharrat/nexus-dialog/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/dkharrat/nexus-dialog/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="nexusdialog" class="anchor" href="#nexusdialog"><span class="octicon octicon-link"></span></a>NexusDialog</h1>
+
+<p><strong>Quick and Simple Forms for Android</strong></p>
+
+<p>NexusDialog is a framework that allows you to easily and quickly create forms in Android with little code. It's great
+for apps having many form-based screens, since it reduces the boilerplate code to setup the view layout and tying things
+together in the Activity. Currently, it supports Android API 10+.</p>
+
+<p>This library follows <a href="http://semver.org/">semantic versioning</a>. Note that since this library is still active in
+development, new releases might introduce interface-breaking changes, which will be indicated in the changelog.
+NexusDialog 1.0.0 will be the first stable release.</p>
+
+<h2>
+<a name="a-simple-example" class="anchor" href="#a-simple-example"><span class="octicon octicon-link"></span></a>A Simple Example</h2>
+
+<p>To give you an idea of the simplicity of NexusDialog, here's a screenshot of a simple example:</p>
+
+<p>[screenshot]</p>
+
+<p>Here's the code for that example (less than 7 lines of real code!):</p>
+
+<pre><code>import java.util.Arrays;
+import com.github.dkharrat.nexusdialog.FormActivity;
+import com.github.dkharrat.nexusdialog.controllers.*;
+
+public class SimpleExample extends FormActivity {
+
+    @Override protected void initForm() {
+        FormSectionController section = new FormSectionController(this, "Personal Info");
+        section.addElement(new EditTextController(this, "firstName", "First name"));
+        section.addElement(new EditTextController(this, "lastName", "Last name"));
+        section.addElement(new SelectionController(this, "gender", "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
+
+        addSection(section);
+
+        setTitle("Simple Example");
+    }
+}
+</code></pre>
+
+<p>For more examples, browse the <a href="http://github.com/dkharrat/nexusdialog/samples">samples</a> directory.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>NexusDialog supports many built-in fields for your form, like text boxes, date pickers, spinners, etc. The framework is
+also designed to be extensible so that you can easily add custom form elements if needed. Contributions are also
+welcome! If you've implemented a custom control that is useful, pull requests are welcome and appreciated! Currently,
+the following form elements are supported:</p>
+
+<ul>
+<li>
+<code>ValueController</code>: Shows a TextView containing a value</li>
+<li>
+<code>EditTextController</code>: EditText view that allows for free-form text input.</li>
+<li>
+<code>DatePickerController</code>: Displays a date picker to allow choosing a specific date</li>
+<li>
+<code>SelectionController</code>: Displays a spinner with a list of item to select from</li>
+<li>
+<code>SearchableSelectionController</code>: Displays a (typically large) list of items to select from, with the ability to
+search the list and also allow free-form text.</li>
+</ul><h2>
+<a name="apps-using-nexusdata" class="anchor" href="#apps-using-nexusdata"><span class="octicon octicon-link"></span></a>Apps Using NexusData</h2>
+
+<p>Do you have an app that's utilizing NexusData? <a href="mailto:dkharrat@gmail.com">Let me know</a> and I'll add a link to it here!</p>
+
+<h2>
+<a name="planned-features" class="anchor" href="#planned-features"><span class="octicon octicon-link"></span></a>Planned Features</h2>
+
+<p>The framework is constantly being improved and new features are being implemented. The following improvements are
+planned:</p>
+
+<ul>
+<li>Support switches (on/off)</li>
+<li>Support buttons</li>
+<li>Support sliders</li>
+</ul><h2>
+<a name="how-to-add-nexusdialog-to-your-project" class="anchor" href="#how-to-add-nexusdialog-to-your-project"><span class="octicon octicon-link"></span></a>How to Add NexusDialog to Your Project</h2>
+
+<p>There are multiple ways to include your project, depending on your build environment:</p>
+
+<h4>
+<a name="gradle" class="anchor" href="#gradle"><span class="octicon octicon-link"></span></a>Gradle</h4>
+
+<p>Add the following dependency to your build.gradle file for your project:</p>
+
+<pre><code>dependencies {
+  compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.1.0'
+}
+</code></pre>
+
+<h4>
+<a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h4>
+
+<p>Add the following dependency to your pom.xml file for your project (requires android-maven-plugin 3.8.0+):</p>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.github.dkharrat.nexusdialog&lt;/groupId&gt;
+    &lt;artifactId&gt;nexusdialog&lt;/artifactId&gt;
+    &lt;version&gt;0.1.0&lt;/version&gt;
+    &lt;type&gt;aar&lt;/type&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h4>
+<a name="android-studio-or-intellij-13" class="anchor" href="#android-studio-or-intellij-13"><span class="octicon octicon-link"></span></a>Android Studio or IntelliJ 13+</h4>
+
+<p>Add the appropriate dependency in your build.gradle file and refresh your project.</p>
+
+<h4>
+<a name="eclipse" class="anchor" href="#eclipse"><span class="octicon octicon-link"></span></a>Eclipse</h4>
+
+<ol>
+<li>In Eclipse, import the android-support-v7-appcompat library by following the instructions at
+<a href="http://developer.android.com/tools/support-library/setup.html#libs-with-res">this page</a>.</li>
+<li>Ensure the android-support-v7-appcompat library has been imported and is compiling without errors.</li>
+<li>Import the nexusdialog library project into Eclipse:
+
+<ol>
+<li>Select <strong>Existing Android Code Into Workspace</strong> and click <strong>Next</strong>.</li>
+<li>Browse to the library path: nexusdialog/src/main.</li>
+<li>Click <strong>Finish</strong> to import the project. You should now see a project called <em>main</em>.</li>
+<li>Right-click on the project in the Package Explorer and select <strong>Refactor &gt; Rename</strong>.</li>
+<li>Name the project 'nexusdialog'</li>
+<li>Right-click the <em>nexusdialog</em> project in the Package Explorer and select <strong>Properties</strong>.</li>
+<li>Select the <strong>Java Build Path</strong> page and click on the <strong>Source</strong> tab.</li>
+<li>Remove the <strong>nexusdialog/src</strong> source folder from the list.</li>
+<li>Click on the <strong>Add Folder</strong> button.</li>
+<li>Select the folder <em>java</em> and click <strong>OK</strong>.</li>
+<li>In the same <strong>Properties</strong> dialog, select the <strong>Android</strong> page.</li>
+<li>Under the <strong>Project Build Target</strong> select a target of API 17 or higher.</li>
+<li>Enable the <strong>Is Library</strong> checkbox.</li>
+<li>Click on the <strong>Add</strong> button to add a library dependency.</li>
+<li>Select the <em>android-support-v7-appcompat</em> library and click <strong>OK</strong>.</li>
+<li>Press <strong>OK</strong> in the <strong>Properties</strong> dialog to close it.</li>
+<li>Ensure the library compiles without errors. You may need to clean the project multiple times to be in a clean state.</li>
+</ol>
+</li>
+<li>Add the <em>nexusdialog</em> project as a dependency to your project:
+
+<ol>
+<li>Right-click on your project in the Package Explorer list and select <strong>Properties</strong>.</li>
+<li>Select the <strong>Android</strong> page.</li>
+<li>Under the Library section, click the <strong>Add</strong> button.</li>
+<li>Select <em>nexusdialog</em> and press <strong>OK</strong>.</li>
+<li>Press <strong>OK</strong> in the <strong>Properties</strong> dialog to close it.</li>
+</ol>
+</li>
+<li>You can now start using NexusDialog in your project.</li>
+</ol><h2>
+<a name="how-to-use-nexusdialog" class="anchor" href="#how-to-use-nexusdialog"><span class="octicon octicon-link"></span></a>How to Use NexusDialog</h2>
+
+<p>Once NexusDialog is setup as a dependency in your project (by following the instructions above), you can start creating
+forms right away! The main classes you will be working with the most are:</p>
+
+<ul>
+<li><p><code>FormActivity</code>: This is the base class for each activity you wish to display a form in. Your activity must inherit from
+it. Form setup is done in the <code>initForm()</code> method.</p></li>
+<li><p><code>FormElementController</code>: Although you will not be using this class directly, you will be using its subclasses. All
+form elements (text boxes, labels, sections, etc.) inherit from this base class, which provides them common
+functionality and properties they need. Also, you could use <code>FormSectionController</code> to group a set of form fields
+together.</p></li>
+<li><p><code>FormModel</code>: This class abstracts the data model your form will use. It's the interface that NexusDialog uses to
+access and update the underlying data model the form is based on. A <code>FormActivity</code> uses it to initialize the field
+values to the desired values when its first displayed, as well as update the underlying model when values change in
+the UI. <code>FromActivity</code> uses a default generic <code>FormModel</code> based on a key-value store that is usually sufficient for
+most use cases. However, if you need more control over how the form data is retrieved and stored, you can provide your
+custom implementation (via <code>FormActivity#setModel</code>).</p></li>
+</ul><h4>
+<a name="add-some-fields-grouped-by-section" class="anchor" href="#add-some-fields-grouped-by-section"><span class="octicon octicon-link"></span></a>Add some fields grouped by section</h4>
+
+<pre><code>public class RegistrationForm extends FormActivity {
+    @Override protected void initForm() {
+        setTitle("Register Account");
+
+        FormSectionController section1 = new FormSectionController(this, "Personal Info");
+        section1.addElement(new EditTextController(this, "firstName", "First name"));
+        section1.addElement(new EditTextController(this, "lastName", "Last name"));
+        addSection(section1);
+
+        FormSectionController section2 = new FormSectionController(this, "Account");
+        section2.addElement(new EditTextController(this, "username", "Username"));
+        section2.addElement(new EditTextController(this, "password", "Password") {{
+            setSecureEntry(true);
+        }});
+        addSection(section2);
+    }
+}
+</code></pre>
+
+<h4>
+<a name="initialize-fields-to-certain-values-when-the-form-is-first-displayed" class="anchor" href="#initialize-fields-to-certain-values-when-the-form-is-first-displayed"><span class="octicon octicon-link"></span></a>Initialize fields to certain values when the form is first displayed</h4>
+
+<pre><code>@Override protected void initForm() {
+    // form setup
+    // ...
+
+    getModel().setValue("firstName", "John");
+    getModel().setValue("lastName", "Smith");
+}
+</code></pre>
+
+<h4>
+<a name="to-retrieve-the-current-field-value-at-any-time" class="anchor" href="#to-retrieve-the-current-field-value-at-any-time"><span class="octicon octicon-link"></span></a>To retrieve the current field value at any time:</h4>
+
+<pre><code>getModel().getValue("firstName");
+</code></pre>
+
+<h4>
+<a name="listen-to-changes-in-fields" class="anchor" href="#listen-to-changes-in-fields"><span class="octicon octicon-link"></span></a>Listen to changes in fields:</h4>
+
+<pre><code>getModel().addPropertyChangeListener("firstName", new PropertyChangeListener() {
+    @Override public void propertyChange(PropertyChangeEvent event) {
+        LOG.i("tag", "Value was: " + event.getOldValue() + ", now: " + event.getNewValue());
+    }
+});
+</code></pre>
+
+<p>Please browse through the samples included with the project for examples on how NexusDialog can be used.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>See the current <a href="javadoc">Javadoc</a>.</p>
+
+<h2>
+<a name="styling" class="anchor" href="#styling"><span class="octicon octicon-link"></span></a>Styling</h2>
+
+<p>TODO</p>
+
+<h2>
+<a name="adding-custom-elements" class="anchor" href="#adding-custom-elements"><span class="octicon octicon-link"></span></a>Adding Custom Elements</h2>
+
+<p>If the built-in form controls provided by NexusDialog don't meet your needs, you can easily extend NexusData to provide
+custom form elements. The common parent class for all form elements is <code>FormElementController</code>. Among other things,
+<code>FormElementController</code> tells NexusDialog how to construct the view to display in the form.</p>
+
+<p>Typically your custom element falls under one of these cases:</p>
+
+<ol>
+<li><p>Your custom element needs to show a label before a custom field: in this case, consider inheriting from
+<code>LabeledFieldController</code> which can provide the label functionality for you.</p></li>
+<li><p>Your custom element needs full customization for how it's displayed: in this case, inherit from
+<code>FormElementController</code> and implement the <code>createView</code> method to tell NexusDialog how to create the custom view.</p></li>
+</ol><p>Browse through the <em>catalog</em> sample for an example of implementing a custom element, or go over the code for the
+built-in form elements to get an idea how they work.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Contributions via pull requests are welcome! For suggestions, feedback, or feature requests, please submit an issue.</p>
+
+<h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Dia Kharrat - <a href="mailto:dkharrat@gmail.com">dkharrat@gmail.com</a><br>
+Twitter: <a href="http://twitter.com/dkharrat">http://twitter.com/dkharrat</a></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2013 Dia Kharrat
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">NexusDialog maintained by <a href="https://github.com/dkharrat">dkharrat</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-46124835-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
