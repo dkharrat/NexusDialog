@@ -31,8 +31,9 @@ import com.github.dkharrat.nexusdialog.util.MessageUtil;
 /**
  * Represents a field that allows a user to select from a list of items, with the ability to search for specific items.
  * It also allows for free-form entry if the input text does not exist in the predefined list. This field is useful when
- * the number of items are large. While the list of items are retrieved from the data source, a loading indicator is
- * displayed. For similar functionality, but with a small number of items, use {@link SelectionController} instead.
+ * the number of items are large. While the list of items are retrieved in the background from the data source, a
+ * loading indicator is displayed. For similar functionality, but with a small number of items, use
+ * {@link SelectionController} instead.
  * <p/>
  * For the field value, the associated FormModel must return a String representing the currently selected item.
  * If the value does not exist in the list, 'Other (x)' will be displayed, where 'x' is the field value. No selection
@@ -42,6 +43,7 @@ public class SearchableSelectionController extends LabeledFieldController {
     private final static int EDIT_TEXT_ID = 1001;
 
     private final String placeholder;
+    private boolean isFreeFormTextAllowed = true;
     private Dialog selectionDialog = null;
     private final SelectionDataSource dataSource;
     private List<String> items = null;
@@ -54,7 +56,8 @@ public class SearchableSelectionController extends LabeledFieldController {
      */
     public static interface SelectionDataSource {
         /**
-         * Returns a list of all the items that can be selected or searched.
+         * Returns a list of all the items that can be selected or searched. This method will be called by the
+         * {@link SearchableSelectionController} in a background thread.
          *
          * @return a list of all the items that can be selected or searched.
          */
@@ -78,6 +81,14 @@ public class SearchableSelectionController extends LabeledFieldController {
 
         loadItemsTask = new LoadItemsTask();
         loadItemsTask.execute(new Void[0]);
+    }
+
+    public void setFreeFormTextAllowed(boolean allowed) {
+        isFreeFormTextAllowed = allowed;
+    }
+
+    public boolean isFreeFormTextAllowed() {
+        return isFreeFormTextAllowed;
     }
 
     protected View constructFieldView() {
@@ -168,7 +179,9 @@ public class SearchableSelectionController extends LabeledFieldController {
                     }
 
                     otherSelectionIsShowing = false;
-                    if (!text.isEmpty() && (filteredItems.size() != 1 || !filteredItems.get(0).equalsIgnoreCase(textLowerCase))) {
+                    if (isFreeFormTextAllowed
+                            && !text.isEmpty()
+                            && (filteredItems.size() != 1 || !filteredItems.get(0).equalsIgnoreCase(textLowerCase))) {
                         filteredItems.add(0, "Other (" + text + ")");
                         otherSelectionIsShowing = true;
                     }

@@ -64,7 +64,6 @@ planned:
 * Support buttons
 * Support secure text for EditTextController
 * Support sliders
-* Allow disabling free-form text in SearchableSelectionController
 
 How to Add NexusDialog to Your Project
 --------------------------------------

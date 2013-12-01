@@ -39,7 +39,7 @@ public class BasicForm extends FormActivity {
     protected void initForm() {
         FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
-        section.addElement(new EditTextController(this, LAST_NAME, "Last name", null));
+        section.addElement(new EditTextController(this, LAST_NAME, "Last name", "Last name"));
         section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
         section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
 
@@ -47,7 +47,7 @@ public class BasicForm extends FormActivity {
         customElem.getButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 // setting a field value will automatically refresh the form element
-                getModel().setValue(FAVORITE_COLOR, "Black");
+                getModel().setValue(FAVORITE_COLOR, "Green");
                 MessageUtil.showAlertMessage("Greatness", "You just changed your favorite color :) Check that field to find out what it is.", BasicForm.this);
             }
         });
