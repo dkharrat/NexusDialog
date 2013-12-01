@@ -1,9 +1,9 @@
 NexusDialog
 ===========
-**Quick and Simple Forms for Android**
+**Quick and Simple Form Builder for Android**
 
-NexusDialog is a framework that allows you to easily and quickly create forms in Android with little code. It's great
-for apps having many form-based screens, since it reduces the boilerplate code to setup the view layout and tying things
+NexusDialog is a library that allows you to easily and quickly build forms in Android with little code. It's great
+for apps with many form-based screens, since it reduces the boilerplate code to setup the view layout and tie things
 together in the Activity. Currently, it supports Android API 10+.
 
 This library follows [semantic versioning](http://semver.org/). Note that since this library is still active in
@@ -53,7 +53,7 @@ the following form elements are supported:
     search the list and also allow free-form text.
 
 Apps Using NexusDialog
---------------------
+----------------------
 Do you have an app that's utilizing NexusDialog? [Let me know](mailto:dkharrat@gmail.com) and I'll add a link to it here!
 
 Planned Features
@@ -93,6 +93,7 @@ Add the following dependency to your pom.xml file for your project (requires and
 Add the appropriate dependency in your build.gradle file and refresh your project.
 
 #### Eclipse
+
 1. In Eclipse, import the android-support-v7-appcompat library by following the instructions at
    [this page](http://developer.android.com/tools/support-library/setup.html#libs-with-res).
 2. Ensure the android-support-v7-appcompat library has been imported and is compiling without errors.
@@ -216,7 +217,7 @@ Contributing
 Contributions via pull requests are welcome! For suggestions, feedback, or feature requests, please submit an issue.
 
 Author
-------------
+------
 Dia Kharrat - dkharrat@gmail.com<br/>
 Twitter: [http://twitter.com/dkharrat](http://twitter.com/dkharrat)
 
@@ -235,3 +236,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
