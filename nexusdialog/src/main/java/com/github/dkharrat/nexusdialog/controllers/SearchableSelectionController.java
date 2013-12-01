@@ -91,7 +91,7 @@ public class SearchableSelectionController extends LabeledFieldController {
         return isFreeFormTextAllowed;
     }
 
-    protected View constructFieldView() {
+    protected View createFieldView() {
         final EditText editText = new EditText(getContext());
         editText.setId(EDIT_TEXT_ID);
 

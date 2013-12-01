@@ -137,7 +137,7 @@ public class EditTextController extends LabeledFieldController {
     }
 
     @Override
-    protected View constructFieldView() {
+    protected View createFieldView() {
         final EditText editText = new EditText(getContext());
         editText.setId(EDIT_TEXT_ID);
 

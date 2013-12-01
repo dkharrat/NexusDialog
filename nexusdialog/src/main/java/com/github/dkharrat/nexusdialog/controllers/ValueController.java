@@ -26,7 +26,7 @@ public class ValueController extends LabeledFieldController {
     }
 
     @Override
-    protected View constructFieldView() {
+    protected View createFieldView() {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         final TextView textView = (TextView)layoutInflater.inflate(R.layout.value_field, null);
         refresh(textView);

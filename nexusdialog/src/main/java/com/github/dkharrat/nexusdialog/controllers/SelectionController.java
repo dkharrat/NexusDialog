@@ -73,7 +73,7 @@ public class SelectionController extends LabeledFieldController {
     }
 
     @Override
-    protected View constructFieldView() {
+    protected View createFieldView() {
         Spinner spinnerView = new Spinner(getContext());
         spinnerView.setId(SPINNER_ID);
         spinnerView.setPrompt(prompt);

@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.dkharrat.nexusdialog.R;
@@ -102,7 +101,7 @@ public abstract class LabeledFieldController extends FormElementController {
      */
     public View getFieldView() {
         if (fieldView == null) {
-            fieldView = constructFieldView();
+            fieldView = createFieldView();
         }
         return fieldView;
     }
@@ -112,7 +111,7 @@ public abstract class LabeledFieldController extends FormElementController {
      *
      * @return          the newly created view for this field
      */
-    protected abstract View constructFieldView();
+    protected abstract View createFieldView();
 
     @Override
     protected View createView() {

@@ -13,7 +13,7 @@ public class CustomElement extends LabeledFieldController {
     }
 
     @Override
-    protected View constructFieldView() {
+    protected View createFieldView() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         return inflater.inflate(R.layout.custom_element, null);
     }
