@@ -188,7 +188,7 @@ Please browse through the samples included with the project for examples on how 
 
 Documentation
 -------------
-See the current [Javadoc](javadoc).
+See the current [Javadoc](http://dkharrat.github.io/nexus-dialog/javadoc/).
 
 Styling
 -------
