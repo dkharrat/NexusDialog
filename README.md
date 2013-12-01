@@ -62,7 +62,6 @@ planned:
 
 * Support switches (on/off)
 * Support buttons
-* Support secure text for EditTextController
 * Support sliders
 
 How to Add NexusDialog to Your Project

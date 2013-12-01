@@ -88,6 +88,17 @@ public class EditTextController extends LabeledFieldController {
         return inputType;
     }
 
+    private void setInputTypeMask(int mask, boolean enabled) {
+        if (enabled) {
+            inputType = inputType | mask;
+        } else {
+            inputType = inputType & ~mask;
+        }
+        if (isViewCreated()) {
+            getEditText().setInputType(inputType);
+        }
+    }
+
     /**
      * Indicates whether this text box has multi-line enabled.
      *
@@ -98,19 +109,31 @@ public class EditTextController extends LabeledFieldController {
     }
 
     /**
-     * Enables or disables multi-line input for the text field.
+     * Enables or disables multi-line input for the text field. Default is false.
      *
      * @param multiLine if true, multi-line input is allowed, otherwise, the field will only allow a single line.
      */
     public void setMultiLine(boolean multiLine) {
-        if (multiLine) {
-            inputType = inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-        } else {
-            inputType = inputType & ~InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-        }
-        if (isViewCreated()) {
-            getEditText().setInputType(inputType);
-        }
+        setInputTypeMask(InputType.TYPE_TEXT_FLAG_MULTI_LINE, multiLine);
+    }
+
+    /**
+     * Indicates whether this text field hides the input text for security reasons.
+     *
+     * @return  true if this text field hides the input text, or false otherwise
+     */
+    public boolean isSecureEntry() {
+        return (inputType | InputType.TYPE_TEXT_VARIATION_PASSWORD) != 0;
+    }
+
+    /**
+     * Enables or disables secure entry for this text field. If enabled, input will be hidden from the user. Default is
+     * false.
+     *
+     * @param isSecureEntry if true, input will be hidden from the user, otherwise input will be visible.
+     */
+    public void setSecureEntry(boolean isSecureEntry) {
+        setInputTypeMask(InputType.TYPE_TEXT_VARIATION_PASSWORD, isSecureEntry);
     }
 
     @Override
