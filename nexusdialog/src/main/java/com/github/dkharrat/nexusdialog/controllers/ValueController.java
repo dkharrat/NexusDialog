@@ -1,27 +1,10 @@
 package com.github.dkharrat.nexusdialog.controllers;
 
-import android.app.ActionBar;
-import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
-import android.graphics.Typeface;
-import android.text.InputType;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.TextView;
 import com.github.dkharrat.nexusdialog.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Represents a field that displays a value.
