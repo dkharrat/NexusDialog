@@ -159,7 +159,7 @@ public class FormSectionController extends FormElementController {
 
     @Override
     protected View createView() {
-        LayoutInflater layoutInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
         View view;
         if (!TextUtils.isEmpty(getTitle())) {

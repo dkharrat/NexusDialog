@@ -10,11 +10,13 @@ import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.github.dkharrat.nexusdialog.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,7 +30,6 @@ import java.util.Locale;
  * will be used to display the value.
  */
 public class ValueController extends LabeledFieldController {
-    private final static int TEXT_VIEW_ID = 1001;
 
     /**
      * Constructs a new instance of a value field.
@@ -43,21 +44,15 @@ public class ValueController extends LabeledFieldController {
 
     @Override
     protected View constructFieldView() {
-        final TextView textView = new TextView(getContext());
-        textView.setId(TEXT_VIEW_ID);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.MATCH_PARENT);
-        params.gravity = Gravity.RIGHT;
-        textView.setLayoutParams(params);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        final TextView textView = (TextView)layoutInflater.inflate(R.layout.value_field, null);
         refresh(textView);
 
         return textView;
     }
 
     private TextView getTextView() {
-        return (TextView)getView().findViewById(TEXT_VIEW_ID);
+        return (TextView)getView().findViewById(R.id.value_text);
     }
 
     private void refresh(TextView textView) {
