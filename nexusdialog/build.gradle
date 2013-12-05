@@ -46,12 +46,6 @@ android {
   }
 }
 
-configurations {
-    archives {
-        extendsFrom configurations.default
-    }
-}
-
 if (project.hasProperty('signing')) {
     signing {
         required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
@@ -61,7 +55,6 @@ if (project.hasProperty('signing')) {
 
 if (project.hasProperty('sonatypeUsername')) {
     uploadArchives {
-        configuration = configurations.archives
         repositories.mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
