@@ -14,7 +14,7 @@ A Simple Example
 ----------------
 To give you an idea of the simplicity of NexusDialog, here's a screenshot of a simple example:
 
-![screenshot](http://dkharrat.github.io/nexus-dialog/images/screenshot01.png "NexusDialog Screenshot")
+![screenshot](http://dkharrat.github.io/NexusDialog/images/screenshot01.png "NexusDialog Screenshot")
 
 Here's the code for that example (less than 7 lines of real code!):
 
@@ -36,7 +36,7 @@ Here's the code for that example (less than 7 lines of real code!):
         }
     }
 
-For more examples, browse the [samples](http://github.com/dkharrat/nexus-dialog/tree/master/samples) directory.
+For more examples, browse the [samples](http://github.com/dkharrat/NexusDialog/tree/master/samples) directory.
 
 Features
 --------
@@ -189,7 +189,7 @@ Please browse through the samples included with the project for examples on how 
 
 Documentation
 -------------
-See the current [Javadoc](http://dkharrat.github.io/nexus-dialog/javadoc/).
+See the current [Javadoc](http://dkharrat.github.io/NexusDialog/javadoc/).
 
 Styling
 -------
