@@ -1,9 +1,9 @@
 NexusDialog
 ===========
-**Quick and Simple Form Builder for Android**
+**Simple Form Builder for Android**
 
-NexusDialog is a library that allows you to easily and quickly build forms in Android with little code. It's great
-for apps with many form-based screens, since it reduces the boilerplate code to setup the view layout and tie things
+NexusDialog is a library that allows you to dynamically generate forms in Android with little code. It's great
+for apps with many form-based UIs, since it reduces the boilerplate code to setup the view layout and tie things
 together in the Activity. Currently, it supports Android API 10+.
 
 This library follows [semantic versioning](http://semver.org/). Note that since this library is still active in
@@ -55,15 +55,6 @@ the following form elements are supported:
 Apps Using NexusDialog
 ----------------------
 Do you have an app that's utilizing NexusDialog? [Let me know](mailto:dkharrat@gmail.com) and I'll add a link to it here!
-
-Planned Features
-----------------
-The framework is constantly being improved and new features are being implemented. The following improvements are
-planned:
-
-* Support switches (on/off)
-* Support buttons
-* Support sliders
 
 How to Add NexusDialog to Your Project
 --------------------------------------
@@ -211,6 +202,15 @@ Typically your custom element falls under one of these cases:
 
 Browse through the _catalog_ sample for an example of implementing a custom element, or go over the code for the
 built-in form elements to get an idea how they work.
+
+Planned Features
+----------------
+The framework is constantly being improved and new features are being implemented. The following improvements are
+planned:
+
+* Support switches (on/off)
+* Support buttons
+* Support sliders
 
 Contributing
 ------------
