@@ -1,6 +1,6 @@
 NexusDialog
 ===========
-**Simple Form Builder for Android**
+**Simple Form Generator for Android**
 
 NexusDialog is a library that allows you to dynamically generate forms in Android with little code. It's great
 for apps with many form-based UIs, since it reduces the boilerplate code to setup the view layout and tie things
