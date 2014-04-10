@@ -41,7 +41,7 @@ android {
         source = variant.javaCompile.source
         ext.androidJar = "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
         classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
-        exclude '**/R.html', '**/R.*.html'
+        exclude '**/R.html', '**/R.*.html', '**/BuildConfig.java'
     }
   }
 }
