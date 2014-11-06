@@ -3,7 +3,7 @@
           package="com.github.dkharrat.nexusdialog">
 
     <uses-sdk android:minSdkVersion="10"
-              android:targetSdkVersion="17"/>
+              android:targetSdkVersion="21"/>
 
     <application android:label="NexusDialog" >
     </application>
