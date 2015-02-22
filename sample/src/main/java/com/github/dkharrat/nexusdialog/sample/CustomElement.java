@@ -1,4 +1,4 @@
-package com.github.dkharrat.nexusdialog.samples.catalog;
+package com.github.dkharrat.nexusdialog.sample;
 
 import android.content.Context;
 import android.view.LayoutInflater;

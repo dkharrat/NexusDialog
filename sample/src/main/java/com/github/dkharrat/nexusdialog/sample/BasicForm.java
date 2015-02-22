@@ -1,10 +1,10 @@
-package com.github.dkharrat.nexusdialog.samples.catalog;
+package com.github.dkharrat.nexusdialog.sample;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.github.dkharrat.nexusdialog.*;
+import com.github.dkharrat.nexusdialog.FormActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
 import com.github.dkharrat.nexusdialog.util.MessageUtil;

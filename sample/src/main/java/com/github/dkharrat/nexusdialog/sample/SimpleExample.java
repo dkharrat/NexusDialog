@@ -1,4 +1,4 @@
-package com.github.dkharrat.nexusdialog.samples.catalog;
+package com.github.dkharrat.nexusdialog.sample;
 
 import com.github.dkharrat.nexusdialog.FormActivity;
 import com.github.dkharrat.nexusdialog.controllers.EditTextController;
