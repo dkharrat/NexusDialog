@@ -7,7 +7,7 @@ import android.view.View;
 import com.github.dkharrat.nexusdialog.FormActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
-import com.github.dkharrat.nexusdialog.util.MessageUtil;
+import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

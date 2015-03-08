@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
 import com.github.dkharrat.nexusdialog.controllers.LabeledFieldController;
-import com.github.dkharrat.nexusdialog.util.MessageUtil;
+import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 import com.github.dkharrat.nexusdialog.validations.ValidationError;
 
 /**

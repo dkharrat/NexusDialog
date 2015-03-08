@@ -1,4 +1,4 @@
-package com.github.dkharrat.nexusdialog.util;
+package com.github.dkharrat.nexusdialog.utils;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

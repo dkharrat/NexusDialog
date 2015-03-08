@@ -26,7 +26,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.github.dkharrat.nexusdialog.R;
-import com.github.dkharrat.nexusdialog.util.MessageUtil;
+import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
 /**
  * Represents a field that allows a user to select from a list of items, with the ability to search for specific items.
