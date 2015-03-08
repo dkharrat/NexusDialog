@@ -147,12 +147,18 @@ public class EditTextController extends LabeledFieldController {
         }
         editText.setInputType(inputType);
         refresh(editText);
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    getModel().setValue(getName(), editText.getText().toString());
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                getModel().setValue(getName(), editText.getText().toString());
             }
         });
 
@@ -161,7 +167,9 @@ public class EditTextController extends LabeledFieldController {
 
     private void refresh(EditText editText) {
         Object value = getModel().getValue(getName());
-        editText.setText(value != null ? value.toString() : "");
+        String valueStr = value != null ? value.toString() : "";
+        if (!valueStr.equals(editText.getText().toString()))
+            editText.setText(valueStr);
     }
 
     @Override
