@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <code>FormController</code> is the main class that manages the form elements of NexusDialog. It provides simple APIs to quickly
- * create and manage form fields.
+ * <code>FormController</code> is the main class that manages the form elements of NexusDialog. It provides simple APIs
+ * to quickly create and manage form fields. Typically, an instance of this class is created within an Activity or Fragment.
  * <p/>
  * The form's data is backed by a model represented by {@link FormModel}, which provides a generic interface to access
  * the data. Form elements use the model to retrieve current field values and set them upon user input. By default,
@@ -172,6 +172,12 @@ public class FormController {
         MessageUtil.showAlertMessage(context.getString(R.string.validation_error_title), sb.toString(), context);
     }
 
+    /**
+     * Adds all the form elements that were added to this <code>FormController</code> inside the specified
+     * <code>ViewGroup</code>. This method should be called once the form elements have been added to this controller.
+     *
+     * @param containerView the view container to add the form elements within
+     */
     public void addFormElementsToView(ViewGroup containerView) {
         for (FormSectionController section : getSections()) {
             ((FormElementController)section).setModel(getModel());
