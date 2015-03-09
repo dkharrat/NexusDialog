@@ -30,13 +30,13 @@ Here's the code for that example (less than 7 lines of real code!):
             section.addElement(new EditTextController(this, "lastName", "Last name"));
             section.addElement(new SelectionController(this, "gender", "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
 
-            addSection(section);
+            getFormController().addSection(section);
 
             setTitle("Simple Example");
         }
     }
 
-For more examples, browse the [samples](http://github.com/dkharrat/NexusDialog/tree/master/samples) directory.
+For more examples, browse the [sample](http://github.com/dkharrat/NexusDialog/tree/master/sample) directory.
 
 Features
 --------
@@ -119,8 +119,13 @@ How to Use NexusDialog
 Once NexusDialog is setup as a dependency in your project (by following the instructions above), you can start creating
 forms right away! The main classes you will be working with the most are:
 
-* `FormActivity`: This is the base class for each activity you wish to display a form in. Your activity must inherit from
-  it. Form setup is done in the `initForm()` method.
+* `FormActivity` or `FormActivityWithActionBar`: If you wish to use the default Activity implementation for NexusDialog,
+  this is the base class for each activity you wish to display a form in. Your activity must inherit from it. Form setup
+  is done in the `initForm()` method.
+
+* `FormController`: This is the main class that manages the form elements of NexusDialog. It provides simple APIs to
+  quickly create and manage form fields. `FormActivity` creates this class for you, or you can be create one manually
+  for custom Activities.
 
 * `FormElementController`: Although you will not be using this class directly, you will be using its subclasses. All
   form elements (text boxes, labels, sections, etc.) inherit from this base class, which provides them common
@@ -143,14 +148,14 @@ forms right away! The main classes you will be working with the most are:
             FormSectionController section1 = new FormSectionController(this, "Personal Info");
             section1.addElement(new EditTextController(this, "firstName", "First name"));
             section1.addElement(new EditTextController(this, "lastName", "Last name"));
-            addSection(section1);
+            getFormController().addSection(section1);
 
             FormSectionController section2 = new FormSectionController(this, "Account");
             section2.addElement(new EditTextController(this, "username", "Username"));
             section2.addElement(new EditTextController(this, "password", "Password") {{
                 setSecureEntry(true);
             }});
-            addSection(section2);
+            getFormController().addSection(section2);
         }
     }
 
