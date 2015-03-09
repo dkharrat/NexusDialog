@@ -4,7 +4,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.github.dkharrat.nexusdialog.FormActivity;
+import com.github.dkharrat.nexusdialog.FormWithActionBarActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
@@ -24,7 +24,7 @@ import java.util.List;
  *  <li>Property change notifications</li>
  * </ul>
  */
-public class BasicForm extends FormActivity {
+public class BasicForm extends FormWithActionBarActivity {
 
     private final static String FIRST_NAME = "firstName";
     private final static String LAST_NAME = "lastName";
@@ -35,6 +35,8 @@ public class BasicForm extends FormActivity {
 
     @Override
     protected void initForm() {
+        setTitle("Basic Form");
+
         FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
         section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
@@ -50,7 +52,7 @@ public class BasicForm extends FormActivity {
         });
         section.addElement(customElem);
 
-        addSection(section);
+        getFormController().addSection(section);
 
         PropertyChangeListener nameFieldListener = new PropertyChangeListener() {
             @Override public void propertyChange(PropertyChangeEvent event) {
@@ -68,8 +70,6 @@ public class BasicForm extends FormActivity {
 
         // initialize field with a value
         getModel().setValue(LAST_NAME, "Smith");
-
-        setTitle("Basic Form");
     }
 
     private final SelectionDataSource dataSource = new SelectionDataSource() {
@@ -95,7 +95,7 @@ public class BasicForm extends FormActivity {
     public boolean onOptionsItemSelected(MenuItem item)  {
         super.onOptionsItemSelected(item);
 
-        if (isValidInput()) {
+        if (getFormController().isValidInput()) {
             Object firstName = getModel().getValue(FIRST_NAME);
             Object lastName = getModel().getValue(LAST_NAME);
             Object gender = getModel().getValue(GENDER);
@@ -107,7 +107,7 @@ public class BasicForm extends FormActivity {
                     + "Favorite Color: " + favColor + "\n";
             MessageUtil.showAlertMessage("Field Values", msg, this);
         } else {
-            showValidationErrors();
+            getFormController().showValidationErrors();
         }
         return true;
     }

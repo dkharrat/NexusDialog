@@ -19,7 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
         ListView listView = (ListView)findViewById(R.id.examples_list);
 
-        String[] items = {"Simple Example", "Basic Form"};
+        String[] items = {"Simple Example", "Basic Form", "Custom Form"};
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -32,6 +32,10 @@ public class MainActivity extends ActionBarActivity {
                     }
                     case 1: {
                         intent = new Intent(MainActivity.this, BasicForm.class);
+                        break;
+                    }
+                    case 2: {
+                        intent = new Intent(MainActivity.this, CustomFormActivity.class);
                         break;
                     }
                     default: {
