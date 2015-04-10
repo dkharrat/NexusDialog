@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.1
+-----
+* Fixed crash in drop-down selection field in Android API 21+.
+
 0.2.0
 -----
 * Refactored out form management into FormController. Form management is no longer dependent Activity base class.
