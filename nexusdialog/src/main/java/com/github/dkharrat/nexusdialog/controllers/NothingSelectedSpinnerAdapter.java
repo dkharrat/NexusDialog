@@ -102,19 +102,17 @@ class NothingSelectedSpinnerAdapter implements SpinnerAdapter, ListAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        // doesn't work!! Vote to Fix! http://code.google.com/p/android/issues/detail?id=17128 - Spinner does not support multiple view types
-        // This method determines what is the convertView, this should return 1 for pos 0 or return 0 otherwise.
-        return position == 0 ? getViewTypeCount() - EXTRA : adapter.getItemViewType(position - EXTRA);
+        return 0;
     }
 
     @Override
     public int getViewTypeCount() {
-        return adapter.getViewTypeCount() + EXTRA;
+        return 1;
     }
 
     @Override
     public long getItemId(int position) {
-        return adapter.getItemId(position - EXTRA);
+        return position >= EXTRA ? adapter.getItemId(position - EXTRA) : position - EXTRA;
     }
 
     @Override
