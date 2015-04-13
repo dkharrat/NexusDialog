@@ -65,7 +65,7 @@ There are multiple ways to include your project, depending on your build environ
 Add the following dependency to your build.gradle file for your project:
 
     dependencies {
-      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.2.1'
+      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.2.2'
     }
 
 #### Maven
@@ -75,7 +75,7 @@ Add the following dependency to your pom.xml file for your project (requires and
     <dependency>
         <groupId>com.github.dkharrat.nexusdialog</groupId>
         <artifactId>nexusdialog</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.2</version>
         <type>aar</type>
     </dependency>
 

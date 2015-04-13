@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.2
+-----
+* Use same timezone of the specified SimpleDateFormat for DatePickerController.
+
 0.2.1
 -----
 * Fixed crash in drop-down selection field in Android API 21+.
