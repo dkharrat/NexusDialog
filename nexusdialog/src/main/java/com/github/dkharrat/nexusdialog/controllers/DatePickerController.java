@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -28,6 +29,7 @@ public class DatePickerController extends LabeledFieldController {
 
     private DatePickerDialog datePickerDialog = null;
     private final SimpleDateFormat displayFormat;
+    private final TimeZone timeZone;
 
     /**
      * Constructs a new instance of a date picker field.
@@ -41,6 +43,7 @@ public class DatePickerController extends LabeledFieldController {
     public DatePickerController(Context ctx, String name, String labelText, boolean isRequired, SimpleDateFormat displayFormat) {
         super(ctx, name, labelText, isRequired);
         this.displayFormat = displayFormat;
+        this.timeZone = displayFormat.getTimeZone();
     }
 
     /**
@@ -89,12 +92,14 @@ public class DatePickerController extends LabeledFieldController {
                 date = new Date();
             }
             Calendar calendar = Calendar.getInstance(Locale.getDefault());
+            calendar.setTimeZone(timeZone);
             calendar.setTime(date);
 
             datePickerDialog = new DatePickerDialog(context, new OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     Calendar calendar = Calendar.getInstance(Locale.getDefault());
+                    calendar.setTimeZone(timeZone);
                     calendar.set(year, monthOfYear, dayOfMonth);
                     getModel().setValue(getName(), calendar.getTime());
                     editText.setText(displayFormat.format(calendar.getTime()));
