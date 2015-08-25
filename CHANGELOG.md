@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3.0
+-----
+* Updated to use Android SDK 23
+* Support adding form elements dynamically
+
 0.2.2
 -----
 * Use same timezone of the specified SimpleDateFormat for DatePickerController.
