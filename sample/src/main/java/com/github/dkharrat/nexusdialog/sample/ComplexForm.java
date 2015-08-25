@@ -24,7 +24,7 @@ import java.util.List;
  *  <li>Property change notifications</li>
  * </ul>
  */
-public class BasicForm extends FormWithAppCompatActivity {
+public class ComplexForm extends FormWithAppCompatActivity {
 
     private final static String FIRST_NAME = "firstName";
     private final static String LAST_NAME = "lastName";
@@ -35,7 +35,7 @@ public class BasicForm extends FormWithAppCompatActivity {
 
     @Override
     protected void initForm() {
-        setTitle("Basic Form");
+        setTitle("Complex Form");
 
         FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
@@ -47,7 +47,7 @@ public class BasicForm extends FormWithAppCompatActivity {
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
         customElem.getButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                MessageUtil.showAlertMessage("Greatness", "Yay!!", BasicForm.this);
+                MessageUtil.showAlertMessage("Greatness", "Yay!!", ComplexForm.this);
             }
         });
         section.addElement(customElem);

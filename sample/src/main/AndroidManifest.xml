@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".BasicForm"/>
+        <activity android:name=".ComplexForm"/>
         <activity android:name=".SimpleExample"/>
         <activity android:name=".CustomFormActivity"/>
     </application>
