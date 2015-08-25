@@ -7,8 +7,8 @@ import android.view.WindowManager.LayoutParams;
 
 /**
  * <code>FormActivity</code> is provides a default Activity implementation for using NexusDialog. It provides simple APIs to quickly
- * create and manage form fields. If you'd like the Activity to be based on <code>ActionBarActivity</code>, you can use
- * {@link FormWithActionBarActivity}
+ * create and manage form fields. If you'd like the Activity to be based on <code>AppCompatActivity</code>, you can use
+ * {@link FormWithAppCompatActivity}
  */
 public abstract class FormActivity extends Activity {
 

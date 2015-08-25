@@ -68,6 +68,14 @@ Add the following dependency to your build.gradle file for your project:
       compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.2.2'
     }
 
+Make sure your application is using the Android SDK v23 or later in your build.gradle file:
+
+    android {
+        compileSdkVersion 23
+        buildToolsVersion "23"
+        ...
+    }
+
 #### Maven
 
 Add the following dependency to your pom.xml file for your project (requires android-maven-plugin 3.8.0+):

@@ -4,7 +4,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.github.dkharrat.nexusdialog.FormWithActionBarActivity;
+import com.github.dkharrat.nexusdialog.FormWithAppCompatActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
@@ -24,7 +24,7 @@ import java.util.List;
  *  <li>Property change notifications</li>
  * </ul>
  */
-public class BasicForm extends FormWithActionBarActivity {
+public class BasicForm extends FormWithAppCompatActivity {
 
     private final static String FIRST_NAME = "firstName";
     private final static String LAST_NAME = "lastName";
