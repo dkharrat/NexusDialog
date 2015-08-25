@@ -1,9 +1,6 @@
 package com.github.dkharrat.nexusdialog.sample;
 
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import com.github.dkharrat.nexusdialog.FormWithAppCompatActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
@@ -11,8 +8,7 @@ import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Demonstrates the following functionality:
@@ -33,11 +29,13 @@ public class ComplexForm extends FormWithAppCompatActivity {
     private final static String FAVORITE_COLOR = "favColor";
     private final static String CUSTOM_ELEM = "customElem";
 
+    private final Stack<String> addedElements = new Stack<String>();
+
     @Override
     protected void initForm() {
         setTitle("Complex Form");
 
-        FormSectionController section = new FormSectionController(this, "Personal Info");
+        final FormSectionController section = new FormSectionController(this, "Personal Info");
         section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
         section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
         section.addElement(new ValueController(this, FULL_NAME, "Full name"));
@@ -45,9 +43,20 @@ public class ComplexForm extends FormWithAppCompatActivity {
         section.addElement(new SearchableSelectionController(this, FAVORITE_COLOR, "Favorite Color", false, "Blue", dataSource));
 
         CustomElement customElem = new CustomElement(this, CUSTOM_ELEM, "Custom Element");
-        customElem.getButton().setOnClickListener(new View.OnClickListener() {
+        customElem.getAddButton().setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                MessageUtil.showAlertMessage("Greatness", "Yay!!", ComplexForm.this);
+                String name = "elem_" + addedElements.size();
+                addedElements.add(name);
+                section.addElement(new ValueController(ComplexForm.this, name, name));
+                recreateViews();
+            }
+        });
+        customElem.getRemoveButton().setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                if (!addedElements.isEmpty()) {
+                    section.removeElement(addedElements.pop());
+                    recreateViews();
+                }
             }
         });
         section.addElement(customElem);

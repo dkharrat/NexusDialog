@@ -23,8 +23,15 @@ public abstract class FormWithAppCompatActivity extends AppCompatActivity {
         formController = new FormController(this);
         initForm();
 
+        recreateViews();
+    }
+
+    /**
+     * Reconstructs the form element views. This must be called after form elements are dynamically added or removed.
+     */
+    protected void recreateViews() {
         ViewGroup containerView = (ViewGroup)findViewById(R.id.form_elements_container);
-        formController.addFormElementsToView(containerView);
+        formController.recreateViews(containerView);
     }
 
     /**

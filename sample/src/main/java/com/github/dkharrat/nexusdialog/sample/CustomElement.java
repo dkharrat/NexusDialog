@@ -18,8 +18,12 @@ public class CustomElement extends LabeledFieldController {
         return inflater.inflate(R.layout.custom_element, null);
     }
 
-    public Button getButton() {
-        return (Button)getView().findViewById(R.id.btn);
+    public Button getAddButton() {
+        return (Button)getView().findViewById(R.id.add_btn);
+    }
+
+    public Button getRemoveButton() {
+        return (Button)getView().findViewById(R.id.remove_btn);
     }
 
     public void refresh() {

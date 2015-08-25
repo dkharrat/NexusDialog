@@ -69,9 +69,10 @@ public class FormSectionController extends FormElementController {
      * Adds a form element to this section. Note that sub-sections are not supported.
      *
      * @param element   the form element to add
+     * @param position  the position at which to insert the element
      * @return          the same instance of the form element that was added to support method chaining
      */
-    public FormElementController addElement(FormElementController element) {
+    public FormElementController addElement(FormElementController element, int position) {
         if (element instanceof FormSectionController) {
             throw new IllegalArgumentException("Sub-sections are not supported");
         }
@@ -80,9 +81,19 @@ public class FormSectionController extends FormElementController {
             throw new IllegalArgumentException("Element with that name already exists");
         } else {
             elements.put(element.getName(), element);
-            orderedElements.add(element);
+            orderedElements.add(position, element);
             return element;
         }
+    }
+
+    /**
+     * Adds a form element to the end of this section. Note that sub-sections are not supported.
+     *
+     * @param element   the form element to add
+     * @return          the same instance of the form element that was added to support method chaining
+     */
+    public FormElementController addElement(FormElementController element) {
+        return addElement(element, orderedElements.size());
     }
 
     /**

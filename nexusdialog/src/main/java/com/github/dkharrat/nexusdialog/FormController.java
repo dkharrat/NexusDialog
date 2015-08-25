@@ -86,10 +86,20 @@ public class FormController {
     /**
      * Adds the specified section to the form.
      *
-     * @param section the form section to add
+     * @param section   the form section to add
+     * @param position  the position at which to insert the section
+     */
+    public void addSection(FormSectionController section, int position) {
+        sectionControllers.add(position, section);
+    }
+
+    /**
+     * Adds the specified section to the form to the end.
+     *
+     * @param section   the form section to add
      */
     public void addSection(FormSectionController section) {
-        sectionControllers.add(section);
+        addSection(section, sectionControllers.size());
     }
 
     /**
@@ -178,7 +188,9 @@ public class FormController {
      *
      * @param containerView the view container to add the form elements within
      */
-    public void addFormElementsToView(ViewGroup containerView) {
+    public void recreateViews(ViewGroup containerView) {
+        containerView.removeAllViews();
+
         for (FormSectionController section : getSections()) {
             ((FormElementController)section).setModel(getModel());
             containerView.addView(section.getView());
