@@ -79,7 +79,7 @@ public class CheckBoxController extends LabeledFieldController {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     int position = buttonView.getId() - CHECKBOX_ID;
-                    Object value = areValuesDefined() ? position : values.get(position);
+                    Object value = areValuesDefined() ? values.get(position): position;
                     Set<Object> modelValues = retrieveModelValues();
                     if (isChecked) {
                         modelValues.add(value);
