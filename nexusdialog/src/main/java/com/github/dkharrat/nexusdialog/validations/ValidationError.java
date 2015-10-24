@@ -13,6 +13,7 @@ public abstract class ValidationError {
      * Creates a new instance with the specified field name.
      *
      * @param fieldName     the field name
+     * @param fieldLabel    the field label
      */
     public ValidationError(String fieldName, String fieldLabel) {
         this.fieldName = fieldName;

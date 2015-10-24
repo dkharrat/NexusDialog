@@ -8,6 +8,11 @@ import com.github.dkharrat.nexusdialog.FormElementController;
 import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
+/**
+ * Defines methods to display the validation errors.
+ * You MUST set the {@link ValidationErrorDisplayMethod#context} and {@link ValidationErrorDisplayMethod#controller}
+ * before calling showErrors.
+ */
 public enum ValidationErrorDisplayMethod {
     GENERAL {
         @Override
@@ -41,5 +46,8 @@ public enum ValidationErrorDisplayMethod {
     protected Context context;
     protected FormController controller;
 
+    /**
+     * Display the validation errors using the selected method.
+     */
     public abstract void showErrors();
 }

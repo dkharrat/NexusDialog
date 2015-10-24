@@ -180,6 +180,11 @@ public class FormController {
         validationErrorDisplay.showErrors();
     }
 
+    /**
+     * Change the display method for validation errors
+     *
+     * @param method the method to use.
+     */
     public void setValidationErrorsDisplayMethod(ValidationErrorDisplayMethod method) {
         method.setContext(context);
         method.setController(this);

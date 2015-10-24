@@ -12,6 +12,7 @@ public class RequiredField extends ValidationError {
      * Creates a new instance with the specified field name.
      *
      * @param fieldName     the field name
+     * @param fieldLabel    the field label
      */
     public RequiredField(String fieldName, String fieldLabel) {
         super(fieldName, fieldLabel);
