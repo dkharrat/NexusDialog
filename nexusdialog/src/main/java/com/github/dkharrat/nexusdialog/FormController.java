@@ -1,12 +1,12 @@
 package com.github.dkharrat.nexusdialog;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.ViewGroup;
+
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
 import com.github.dkharrat.nexusdialog.controllers.LabeledFieldController;
-import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 import com.github.dkharrat.nexusdialog.validations.ValidationError;
+import com.github.dkharrat.nexusdialog.validations.ValidationErrorDisplayMethod;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -28,9 +28,11 @@ public class FormController {
     private final List<FormSectionController> sectionControllers = new ArrayList<FormSectionController>();
 
     private final Context context;
+    private ValidationErrorDisplayMethod validationErrorDisplay;
 
     public FormController(Context context) {
         this.context = context;
+        setValidationErrorsDisplayMethod(ValidationErrorDisplayMethod.PER_FIELD);
     }
 
     /**
@@ -104,6 +106,7 @@ public class FormController {
 
     /**
      * Returns the corresponding <code>FormElementController</code> from the specified name.
+     *
      * @param name  the name of the form element
      * @return      the instance of <code>FormElementController</code> with the specified name, or null if no such
      *              element exists
@@ -174,12 +177,13 @@ public class FormController {
      * Shows an appropriate error message if there are validation errors in the form's input.
      */
     public void showValidationErrors() {
-        StringBuilder sb = new StringBuilder();
-        Resources res = context.getResources();
-        for (ValidationError error : validateInput()) {
-            sb.append(error.getMessage(res) + "\n");
-        }
-        MessageUtil.showAlertMessage(context.getString(R.string.validation_error_title), sb.toString(), context);
+        validationErrorDisplay.showErrors();
+    }
+
+    public void setValidationErrorsDisplayMethod(ValidationErrorDisplayMethod method) {
+        method.setContext(context);
+        method.setController(this);
+        this.validationErrorDisplay = method;
     }
 
     /**

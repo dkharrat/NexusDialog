@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.FormElementController;
+import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.validations.RequiredField;
 import com.github.dkharrat.nexusdialog.validations.ValidationError;
 
@@ -22,6 +22,7 @@ public abstract class LabeledFieldController extends FormElementController {
     private final String labelText;
     private boolean required;
     private View fieldView;
+    private TextView errorView;
 
     /**
      * Creates a labeled field.
@@ -82,12 +83,13 @@ public abstract class LabeledFieldController extends FormElementController {
      * @return  a list containing all the validation errors
      */
     public List<ValidationError> validateInput() {
+        errorView.setVisibility(View.GONE);
         List<ValidationError> errors = new ArrayList<ValidationError>();
 
         if (isRequired()) {
             Object value = getModel().getValue(getName());
             if (value == null || (value instanceof String && TextUtils.isEmpty((String)value))) {
-                errors.add(new RequiredField(getLabel()));
+                errors.add(new RequiredField(getName()));
             }
         }
 
@@ -117,6 +119,7 @@ public abstract class LabeledFieldController extends FormElementController {
     protected View createView() {
         LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.form_labeled_element, null);
+        errorView = (TextView) view.findViewById(R.id.field_error);
 
         TextView label = (TextView)view.findViewById(R.id.field_label);
         if (labelText == null) {
@@ -129,5 +132,11 @@ public abstract class LabeledFieldController extends FormElementController {
         container.addView(getFieldView());
 
         return view;
+    }
+
+    @Override
+    public void setError(String message) {
+        errorView.setText(message);
+        errorView.setVisibility(View.VISIBLE);
     }
 }

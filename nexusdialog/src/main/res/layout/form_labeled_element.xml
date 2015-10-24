@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -8,19 +8,30 @@
     android:gravity="center_vertical"
     android:paddingLeft="?android:attr/scrollbarSize"
     android:paddingRight="?android:attr/scrollbarSize">
-    
+
     <TextView
         android:id="@+id/field_label"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        />
-    
-    <FrameLayout
-        android:id="@+id/field_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
-    
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/field_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/field_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#cc0000"
+            android:visibility="gone"/>
+    </LinearLayout>
+
 </LinearLayout>
