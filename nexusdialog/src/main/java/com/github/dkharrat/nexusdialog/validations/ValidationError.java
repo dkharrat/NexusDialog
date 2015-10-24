@@ -7,14 +7,16 @@ import android.content.res.Resources;
  */
 public abstract class ValidationError {
     private final String fieldName;
+    private final String fieldLabel;
 
     /**
      * Creates a new instance with the specified field name.
      *
      * @param fieldName     the field name
      */
-    public ValidationError(String fieldName) {
+    public ValidationError(String fieldName, String fieldLabel) {
         this.fieldName = fieldName;
+        this.fieldLabel = fieldLabel;
     }
 
     /**
@@ -24,6 +26,15 @@ public abstract class ValidationError {
      */
     public String getFieldName() {
         return fieldName;
+    }
+
+    /**
+     * Returns the label associated to the field.
+     *
+     * @return  the display value of the field.
+     */
+    public String getFieldLabel() {
+        return fieldLabel;
     }
 
     /**

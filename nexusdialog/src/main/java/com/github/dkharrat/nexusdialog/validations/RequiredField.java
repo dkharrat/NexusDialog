@@ -13,12 +13,12 @@ public class RequiredField extends ValidationError {
      *
      * @param fieldName     the field name
      */
-    public RequiredField(String fieldName) {
-        super(fieldName);
+    public RequiredField(String fieldName, String fieldLabel) {
+        super(fieldName, fieldLabel);
     }
 
     @Override
     public String getMessage(Resources resources) {
-        return String.format(resources.getString(R.string.required_field_error_msg), getFieldName());
+        return String.format(resources.getString(R.string.required_field_error_msg), getFieldLabel());
     }
 }
