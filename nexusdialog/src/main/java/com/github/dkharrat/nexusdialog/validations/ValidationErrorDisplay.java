@@ -20,4 +20,9 @@ public interface ValidationErrorDisplay {
      * @param errors The errors to show.
      */
     void showErrors(List<ValidationError> errors);
+
+    /**
+     * Dismiss the validation errors.
+     */
+    void resetErrors();
 }

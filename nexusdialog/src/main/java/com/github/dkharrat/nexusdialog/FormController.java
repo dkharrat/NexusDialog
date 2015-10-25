@@ -182,6 +182,14 @@ public class FormController {
     }
 
     /**
+     * Remove every validation errors from the form.
+     * Is actually a proxy call to {@link ValidationErrorDisplay#resetErrors()}.
+     */
+    public void resetValidationErrors() {
+        validationErrorDisplay.resetErrors();
+    }
+
+    /**
      * Change the display method for validation errors
      *
      * @param method the method to use.

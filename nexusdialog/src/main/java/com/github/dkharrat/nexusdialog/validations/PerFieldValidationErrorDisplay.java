@@ -5,6 +5,7 @@ import android.content.res.Resources;
 
 import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.FormElementController;
+import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
 
 import java.util.List;
 
@@ -15,6 +16,15 @@ public class PerFieldValidationErrorDisplay implements ValidationErrorDisplay {
     public PerFieldValidationErrorDisplay(Context context, FormController controller) {
         this.context = context;
         this.controller = controller;
+    }
+
+    @Override
+    public void resetErrors() {
+        for (FormSectionController section: controller.getSections()) {
+            for (FormElementController elementController: section.getElements()) {
+                elementController.setError(null);
+            }
+         }
     }
 
     @Override

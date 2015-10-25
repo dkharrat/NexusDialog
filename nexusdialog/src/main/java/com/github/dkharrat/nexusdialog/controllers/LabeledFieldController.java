@@ -84,7 +84,6 @@ public abstract class LabeledFieldController extends FormElementController {
      * @return  a list containing all the validation errors
      */
     public List<ValidationError> validateInput() {
-        setError(null);
         List<ValidationError> errors = new ArrayList<ValidationError>();
 
         if (isRequired()) {

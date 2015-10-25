@@ -17,6 +17,11 @@ public class PopUpValidationErrorDisplay implements ValidationErrorDisplay {
     }
 
     @Override
+    public void resetErrors() {
+        // Do nothing, the popup can be dismissed
+    }
+
+    @Override
     public void showErrors(List<ValidationError> errors) {
         StringBuilder sb = new StringBuilder();
         Resources res = context.getResources();
