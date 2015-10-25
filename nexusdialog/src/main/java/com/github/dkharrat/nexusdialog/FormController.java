@@ -5,8 +5,9 @@ import android.view.ViewGroup;
 
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
 import com.github.dkharrat.nexusdialog.controllers.LabeledFieldController;
+import com.github.dkharrat.nexusdialog.validations.PerFieldValidationErrorDisplay;
 import com.github.dkharrat.nexusdialog.validations.ValidationError;
-import com.github.dkharrat.nexusdialog.validations.ValidationErrorDisplayMethod;
+import com.github.dkharrat.nexusdialog.validations.ValidationErrorDisplay;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -28,11 +29,11 @@ public class FormController {
     private final List<FormSectionController> sectionControllers = new ArrayList<FormSectionController>();
 
     private final Context context;
-    private ValidationErrorDisplayMethod validationErrorDisplay;
+    private ValidationErrorDisplay validationErrorDisplay;
 
     public FormController(Context context) {
         this.context = context;
-        setValidationErrorsDisplayMethod(ValidationErrorDisplayMethod.PER_FIELD);
+        setValidationErrorsDisplayMethod(new PerFieldValidationErrorDisplay(context, this));
     }
 
     /**
@@ -177,7 +178,7 @@ public class FormController {
      * Shows an appropriate error message if there are validation errors in the form's input.
      */
     public void showValidationErrors() {
-        validationErrorDisplay.showErrors();
+        validationErrorDisplay.showErrors(validateInput());
     }
 
     /**
@@ -185,9 +186,7 @@ public class FormController {
      *
      * @param method the method to use.
      */
-    public void setValidationErrorsDisplayMethod(ValidationErrorDisplayMethod method) {
-        method.setContext(context);
-        method.setController(this);
+    public void setValidationErrorsDisplayMethod(ValidationErrorDisplay method) {
         this.validationErrorDisplay = method;
     }
 

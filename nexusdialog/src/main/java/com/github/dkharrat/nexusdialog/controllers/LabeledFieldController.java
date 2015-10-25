@@ -79,11 +79,12 @@ public abstract class LabeledFieldController extends FormElementController {
 
     /**
      * Runs a validation on the user input and returns all the validation errors of this field.
+     * Previous error messages are removed when calling {@code validateInput()}.
      *
      * @return  a list containing all the validation errors
      */
     public List<ValidationError> validateInput() {
-        errorView.setVisibility(View.GONE);
+        setError(null);
         List<ValidationError> errors = new ArrayList<ValidationError>();
 
         if (isRequired()) {
@@ -136,7 +137,11 @@ public abstract class LabeledFieldController extends FormElementController {
 
     @Override
     public void setError(String message) {
-        errorView.setText(message);
-        errorView.setVisibility(View.VISIBLE);
+        if (message == null) {
+            errorView.setVisibility(View.GONE);
+        } else {
+            errorView.setText(message);
+            errorView.setVisibility(View.VISIBLE);
+        }
     }
 }
