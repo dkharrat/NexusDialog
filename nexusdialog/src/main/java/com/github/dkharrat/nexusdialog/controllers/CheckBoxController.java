@@ -1,11 +1,14 @@
 package com.github.dkharrat.nexusdialog.controllers;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+
+import com.github.dkharrat.nexusdialog.R;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +22,6 @@ import java.util.Set;
  * selection can be represented by returning {@code null} for the value of the field.
  */
 public class CheckBoxController extends LabeledFieldController {
-    private final static int CONTAINER_ID = 1001;
     private final static int CHECKBOX_ID = 101010;
     private final List<String> items;
     private final List<?> values;
@@ -34,7 +36,7 @@ public class CheckBoxController extends LabeledFieldController {
      * @param items            a list of Strings defining the selection items to show
      * @param useItemsAsValues if true, {@code CheckBoxController} expects the associated form model to use
      *                         the same string of the selected item when getting or setting the field; otherwise,
-     *                         {@code SelectionController} expects the form model to use index (as an Integer) to
+     *                         {@code CheckBoxController} expects the form model to use index (as an Integer) to
      *                         represent the selected item
      */
     public CheckBoxController(Context ctx, String name, String labelText, boolean isRequired, List<String> items, boolean useItemsAsValues) {
@@ -60,14 +62,8 @@ public class CheckBoxController extends LabeledFieldController {
 
     @Override
     protected View createFieldView() {
-        LinearLayout checkboxContainer = new LinearLayout(getContext());
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        checkboxContainer.setOrientation(LinearLayout.VERTICAL);
-        checkboxContainer.setLayoutParams(layoutParams);
-        checkboxContainer.setId(CONTAINER_ID);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewGroup checkboxContainer = (ViewGroup) inflater.inflate(R.layout.form_checkbox_container, null);
 
         CheckBox checkBox;
         int nbItem = items.size();
@@ -140,6 +136,6 @@ public class CheckBoxController extends LabeledFieldController {
      * @return The View containing the checkboxes.
      */
     private ViewGroup getContainer() {
-        return (ViewGroup) getView().findViewById(CONTAINER_ID);
+        return (ViewGroup) getView().findViewById(R.id.form_checkbox_container);
     }
 }
