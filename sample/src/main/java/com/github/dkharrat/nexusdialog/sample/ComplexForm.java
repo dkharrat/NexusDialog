@@ -36,7 +36,7 @@ public class ComplexForm extends FormWithAppCompatActivity {
         setTitle("Complex Form");
 
         final FormSectionController section = new FormSectionController(this, "Personal Info");
-        section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me"));
+        section.addElement(new EditTextController(this, FIRST_NAME, "First name", "Change me", true));
         section.addElement(new EditTextController(this, LAST_NAME, "Last name"));
         section.addElement(new ValueController(this, FULL_NAME, "Full name"));
         section.addElement(new SelectionController(this, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
@@ -104,6 +104,7 @@ public class ComplexForm extends FormWithAppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item)  {
         super.onOptionsItemSelected(item);
 
+        getFormController().resetValidationErrors();
         if (getFormController().isValidInput()) {
             Object firstName = getModel().getValue(FIRST_NAME);
             Object lastName = getModel().getValue(LAST_NAME);

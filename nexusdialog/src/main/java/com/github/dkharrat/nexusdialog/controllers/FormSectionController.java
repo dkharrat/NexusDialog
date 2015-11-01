@@ -194,4 +194,9 @@ public class FormSectionController extends FormElementController {
             element.refresh();
         }
     }
+
+    @Override
+    public void setError(String message) {
+        // No error are possible on a section.
+    }
 }

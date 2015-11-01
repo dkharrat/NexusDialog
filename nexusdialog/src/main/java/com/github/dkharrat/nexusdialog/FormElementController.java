@@ -87,4 +87,11 @@ public abstract class FormElementController {
      * Refreshes the view of this element to reflect current model.
      */
     public abstract void refresh();
+
+    /**
+     * Display an error message on the element.
+     *
+     * @param message The message to display.
+     */
+    public abstract void setError(String message);
 }
