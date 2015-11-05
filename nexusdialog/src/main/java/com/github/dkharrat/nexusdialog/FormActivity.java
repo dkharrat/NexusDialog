@@ -1,6 +1,7 @@
 package com.github.dkharrat.nexusdialog;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
@@ -10,8 +11,8 @@ import android.view.WindowManager.LayoutParams;
  * create and manage form fields. If you'd like the Activity to be based on <code>AppCompatActivity</code>, you can use
  * {@link FormWithAppCompatActivity}
  */
-public abstract class FormActivity extends Activity {
-
+public abstract class FormActivity extends FragmentActivity {
+    private static final String MODEL_BUNDLE_KEY = "nd_model";
     private FormController formController;
 
     @Override
@@ -24,6 +25,14 @@ public abstract class FormActivity extends Activity {
         formController = new FormController(this);
         initForm();
 
+        FragmentManager fm = getSupportFragmentManager();
+        FormModel retainedModel = (FormModel) fm.findFragmentByTag(MODEL_BUNDLE_KEY);
+
+        if (retainedModel == null) {
+            retainedModel = formController.getModel();
+            fm.beginTransaction().add(retainedModel, MODEL_BUNDLE_KEY).commit();
+        }
+        formController.setModel(retainedModel);
         recreateViews();
     }
 
@@ -31,7 +40,7 @@ public abstract class FormActivity extends Activity {
      * Reconstructs the form element views. This must be called after form elements are dynamically added or removed.
      */
     protected void recreateViews() {
-        ViewGroup containerView = (ViewGroup)findViewById(R.id.form_elements_container);
+        ViewGroup containerView = (ViewGroup) findViewById(R.id.form_elements_container);
         formController.recreateViews(containerView);
     }
 

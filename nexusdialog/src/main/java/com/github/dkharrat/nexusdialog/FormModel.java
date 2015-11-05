@@ -1,5 +1,8 @@
 package com.github.dkharrat.nexusdialog;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -7,8 +10,7 @@ import java.beans.PropertyChangeSupport;
  * <code>FormModel</code> is an abstract class that represents the backing data for a form. It provides a mechanism
  * for form elements to retrieve their values to display to the user and persist changes to the model upon changes.
  */
-public abstract class FormModel {
-
+public abstract class FormModel extends Fragment {
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
@@ -39,7 +41,14 @@ public abstract class FormModel {
         return getBackingValue(name);
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     /**
+     *
      * Sets a value for the specified field name. A property change notification is fired to registered listeners if
      * the field's value changed.
      *

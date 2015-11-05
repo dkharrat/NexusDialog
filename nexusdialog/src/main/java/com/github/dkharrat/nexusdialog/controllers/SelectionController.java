@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.R;
 
 /**
@@ -20,7 +21,7 @@ import com.github.dkharrat.nexusdialog.R;
  */
 public class SelectionController extends LabeledFieldController {
 
-    private final static int SPINNER_ID = 1001;
+    private final int spinnerId = FormController.generateViewId();
 
     private final String prompt;
     private final List<String> items;
@@ -69,13 +70,13 @@ public class SelectionController extends LabeledFieldController {
      * @return the Spinner view associated with this element
      */
     public Spinner getSpinner() {
-        return (Spinner)getView().findViewById(SPINNER_ID);
+        return (Spinner)getView().findViewById(spinnerId);
     }
 
     @Override
     protected View createFieldView() {
         Spinner spinnerView = new Spinner(getContext());
-        spinnerView.setId(SPINNER_ID);
+        spinnerView.setId(spinnerId);
         spinnerView.setPrompt(prompt);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
