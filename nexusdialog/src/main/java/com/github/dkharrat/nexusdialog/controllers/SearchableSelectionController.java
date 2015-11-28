@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
@@ -40,7 +41,7 @@ import com.github.dkharrat.nexusdialog.utils.MessageUtil;
  * can be represented by returning {@code null} for the value of the field.
  */
 public class SearchableSelectionController extends LabeledFieldController {
-    private final static int EDIT_TEXT_ID = 1001;
+    private final int editTextId = FormController.generateViewId();
 
     private final String placeholder;
     private boolean isFreeFormTextAllowed = true;
@@ -93,7 +94,7 @@ public class SearchableSelectionController extends LabeledFieldController {
 
     protected View createFieldView() {
         final EditText editText = new EditText(getContext());
-        editText.setId(EDIT_TEXT_ID);
+        editText.setId(editTextId);
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -224,7 +225,7 @@ public class SearchableSelectionController extends LabeledFieldController {
     }
 
     private EditText getEditText() {
-        return (EditText)getView().findViewById(EDIT_TEXT_ID);
+        return (EditText)getView().findViewById(editTextId);
     }
 
     private void refresh(EditText editText) {

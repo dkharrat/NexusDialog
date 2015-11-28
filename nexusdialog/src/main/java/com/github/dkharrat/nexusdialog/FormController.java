@@ -1,6 +1,7 @@
 package com.github.dkharrat.nexusdialog;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.dkharrat.nexusdialog.controllers.FormSectionController;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <code>FormController</code> is the main class that manages the form elements of NexusDialog. It provides simple APIs
@@ -30,6 +32,7 @@ public class FormController {
 
     private final Context context;
     private ValidationErrorDisplay validationErrorDisplay;
+    private static final AtomicInteger nextGeneratedViewId = new AtomicInteger(1);
 
     public FormController(Context context) {
         this.context = context;
@@ -59,6 +62,24 @@ public class FormController {
         // unregister listener first to make sure we only have one listener registered.
         getModel().removePropertyChangeListener(modelListener);
         getModel().addPropertyChangeListener(modelListener);
+    }
+
+    /**
+     * Generate an available ID for the view.
+     * Uses the same implementation as {@link View#generateViewId}
+     *
+     * @return the next available view identifier.
+     */
+    public static int generateViewId(){
+        for (;;) {
+            final int result = nextGeneratedViewId.get();
+            // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
+            int newValue = result + 1;
+            if (newValue > 0x00FFFFFF) newValue = 1; // Roll over to 1, not 0.
+            if (nextGeneratedViewId.compareAndSet(result, newValue)) {
+                return result;
+            }
+        }
     }
 
     /**

@@ -18,6 +18,8 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.github.dkharrat.nexusdialog.FormController;
+
 /**
  * Represents a field that allows selecting a specific date via a date picker.
  * <p/>
@@ -25,7 +27,7 @@ import android.widget.EditText;
  * represented by returning {@code null} for the value of the field.
  */
 public class DatePickerController extends LabeledFieldController {
-    private final static int EDIT_TEXT_ID = 1001;
+    private final int editTextId = FormController.generateViewId();
 
     private DatePickerDialog datePickerDialog = null;
     private final SimpleDateFormat displayFormat;
@@ -59,7 +61,7 @@ public class DatePickerController extends LabeledFieldController {
     @Override
     protected View createFieldView() {
         final EditText editText = new EditText(getContext());
-        editText.setId(EDIT_TEXT_ID);
+        editText.setId(editTextId);
 
         editText.setSingleLine(true);
         editText.setInputType(InputType.TYPE_CLASS_DATETIME);
@@ -119,7 +121,7 @@ public class DatePickerController extends LabeledFieldController {
     }
 
     private EditText getEditText() {
-        return (EditText)getView().findViewById(EDIT_TEXT_ID);
+        return (EditText)getView().findViewById(editTextId);
     }
 
     private void refresh(EditText editText) {

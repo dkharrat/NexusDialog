@@ -7,12 +7,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
+import com.github.dkharrat.nexusdialog.FormController;
+
 /**
  * Represents a field that allows free-form text.
  */
 public class EditTextController extends LabeledFieldController {
-
-    private final static int EDIT_TEXT_ID = 1001;
+    private final int editTextId = FormController.generateViewId();
 
     private int inputType;
     private final String placeholder;
@@ -76,7 +77,7 @@ public class EditTextController extends LabeledFieldController {
      * @return the EditText view associated with this element
      */
     public EditText getEditText() {
-        return (EditText)getView().findViewById(EDIT_TEXT_ID);
+        return (EditText)getView().findViewById(editTextId);
     }
 
     /**
@@ -139,7 +140,7 @@ public class EditTextController extends LabeledFieldController {
     @Override
     protected View createFieldView() {
         final EditText editText = new EditText(getContext());
-        editText.setId(EDIT_TEXT_ID);
+        editText.setId(editTextId);
 
         editText.setSingleLine(!isMultiLine());
         if (placeholder != null) {
