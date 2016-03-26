@@ -127,7 +127,7 @@ public class FormSectionController extends FormElementController {
      * @return          the removed form element instance, or null of no such element was found.
      */
     public FormElementController removeElement(FormElementController element) {
-        return elements.remove(element.getName());
+        return removeElement(element.getName());
     }
 
     /**
