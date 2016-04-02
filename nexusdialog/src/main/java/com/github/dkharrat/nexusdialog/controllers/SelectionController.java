@@ -1,6 +1,7 @@
 package com.github.dkharrat.nexusdialog.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import android.content.Context;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 
 import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.R;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
 
 /**
  * Represents a field that allows a user to select from a list of items.
@@ -26,6 +28,43 @@ public class SelectionController extends LabeledFieldController {
     private final String prompt;
     private final List<String> items;
     private final List<?> values;
+
+    /**
+     * Constructs a selection field
+     *
+     * @param ctx                   the Android context
+     * @param name                  the name of the field
+     * @param labelText             the label to display beside the field. Set to {@code null} to not show a label.
+     * @param validators            contains the validations to process on the field
+     * @param prompt                if nothing is selected, 'prompt' is displayed
+     * @param items                 a list of Strings defining the selection items to show
+     * @param useItemsAsValues      if true, {@code SelectionController} expects the associated form model to use
+     *                              the same string of the selected item when getting or setting the field; otherwise,
+     *                              {@code SelectionController} expects the form model to use index (as an Integer) to
+     *                              represent the selected item
+     */
+    public SelectionController(Context ctx, String name, String labelText, Set<InputValidator> validators, String prompt, List<String> items, boolean useItemsAsValues) {
+        this(ctx, name, labelText, validators, prompt, items, useItemsAsValues ? items : null);
+    }
+
+    /**
+     * Constructs a selection field
+     *
+     * @param ctx                   the Android context
+     * @param name                  the name of the field
+     * @param labelText             the label to display beside the field
+     * @param validators            contains the validations to process on the field
+     * @param prompt                if nothing is selected, 'prompt' is displayed
+     * @param items                 a list of Strings defining the selection items to show
+     * @param values                a list of Objects representing the values to set the form model on a selection (in
+     *                              the same order as the {@code items}.
+     */
+    public SelectionController(Context ctx, String name, String labelText, Set<InputValidator> validators, String prompt, List<String> items, List<?> values) {
+        super(ctx, name, labelText, validators);
+        this.prompt = prompt;
+        this.items = items;
+        this.values = values;
+    }
 
     /**
      * Constructs a selection field

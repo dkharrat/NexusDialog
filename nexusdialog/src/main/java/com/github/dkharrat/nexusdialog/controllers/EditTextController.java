@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.github.dkharrat.nexusdialog.FormController;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
+
+import java.util.Set;
 
 /**
  * Represents a field that allows free-form text.
@@ -17,6 +20,36 @@ public class EditTextController extends LabeledFieldController {
 
     private int inputType;
     private final String placeholder;
+
+    /**
+     * Constructs a new instance of an edit text field.
+     *
+     * @param ctx           the Android context
+     * @param name          the name of the field
+     * @param labelText     the label to display beside the field. Set to {@code null} to not show a label.
+     * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
+     * @param validators    contains the validations to process on the field
+     * @param inputType     the content type of the text box as a mask; possible values are defined by {@link InputType}.
+     *                      For example, to enable multi-line, enable {@code InputType.TYPE_TEXT_FLAG_MULTI_LINE}.
+     */
+    public EditTextController(Context ctx, String name, String labelText, String placeholder, Set<InputValidator> validators, int inputType) {
+        super(ctx, name, labelText, validators);
+        this.placeholder = placeholder;
+        this.inputType = inputType;
+    }
+
+    /**
+     * Constructs a new instance of an edit text field.
+     *
+     * @param ctx           the Android context
+     * @param name          the name of the field
+     * @param labelText     the label to display beside the field
+     * @param placeholder   a placeholder text to show when the input field is empty. If null, no placeholder is displayed
+     * @param validators    contains the validations to process on the field
+     */
+    public EditTextController(Context ctx, String name, String labelText, String placeholder, Set<InputValidator> validators) {
+        this(ctx, name, labelText, placeholder, validators, InputType.TYPE_CLASS_TEXT);
+    }
 
     /**
      * Constructs a new instance of an edit text field.

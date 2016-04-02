@@ -3,6 +3,7 @@ package com.github.dkharrat.nexusdialog.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
 
 /**
  * Represents a field that allows a user to select from a list of items, with the ability to search for specific items.
@@ -83,6 +85,26 @@ public class SearchableSelectionController extends LabeledFieldController {
         loadItemsTask = new LoadItemsTask();
         loadItemsTask.execute(new Void[0]);
     }
+
+    /**
+     * Creates a new instance of a selection field.
+     *
+     * @param ctx           the Android context
+     * @param name          the name of the field
+     * @param labelText     the label to display beside the field. Set to {@code null} to not show a label.
+     * @param validators    contains the validations to process on the field
+     * @param placeholder   a placeholder text to show when the input field is empty
+     * @param dataSource    the data source that provides the list of items to display
+     */
+    public SearchableSelectionController(Context ctx, String name, String labelText, Set<InputValidator> validators, String placeholder, SelectionDataSource dataSource) {
+        super(ctx, name, labelText, validators);
+        this.placeholder = placeholder;
+        this.dataSource = dataSource;
+
+        loadItemsTask = new LoadItemsTask();
+        loadItemsTask.execute(new Void[0]);
+    }
+
 
     public void setFreeFormTextAllowed(boolean allowed) {
         isFreeFormTextAllowed = allowed;

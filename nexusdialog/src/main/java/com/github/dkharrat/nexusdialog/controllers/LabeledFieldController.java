@@ -1,7 +1,6 @@
 package com.github.dkharrat.nexusdialog.controllers;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,20 +8,24 @@ import android.widget.TextView;
 
 import com.github.dkharrat.nexusdialog.FormElementController;
 import com.github.dkharrat.nexusdialog.R;
-import com.github.dkharrat.nexusdialog.validations.RequiredField;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
+import com.github.dkharrat.nexusdialog.validations.RequiredFieldValidator;
 import com.github.dkharrat.nexusdialog.validations.ValidationError;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * An abstract class that represents a generic form field with an associated label.
  */
 public abstract class LabeledFieldController extends FormElementController {
+    private static final RequiredFieldValidator REQUIRED_FIELD_VALIDATOR = new RequiredFieldValidator();
     private final String labelText;
-    private boolean required;
     private View fieldView;
     private TextView errorView;
+    private Set<InputValidator> validators;
 
     /**
      * Creates a labeled field.
@@ -35,9 +38,23 @@ public abstract class LabeledFieldController extends FormElementController {
      *                      non-null value upon validation. Otherwise, this field can be empty.
      */
     public LabeledFieldController(Context ctx, String name, String labelText, boolean isRequired) {
+        this(ctx, name, labelText, new HashSet<InputValidator>());
+        setIsRequired(isRequired);
+    }
+
+    /**
+     * Creates a labeled field.
+     *
+     * @param ctx           the Android context
+     * @param name          the name of the field
+     * @param labelText     the label to display beside the field. If null, no label is displayed and the field will
+     *                      occupy the entire length of the row.
+     * @param validators    The list of input validations to add to the field.
+     */
+    public LabeledFieldController(Context ctx, String name, String labelText, Set<InputValidator> validators) {
         super(ctx, name);
         this.labelText = labelText;
-        required = isRequired;
+        this.validators = validators;
     }
 
     /**
@@ -56,7 +73,20 @@ public abstract class LabeledFieldController extends FormElementController {
      *                  field can be empty.
      */
     public void setIsRequired(boolean required) {
-        this.required = required;
+        if (! required) {
+            validators.remove(REQUIRED_FIELD_VALIDATOR);
+        } else if (! isRequired()) {
+            validators.add(REQUIRED_FIELD_VALIDATOR);
+        }
+    }
+
+    /**
+     * Changes the validators for the given field.
+     *
+     * @param newValidators THe new validators to use.
+     */
+    public void setValidators(Set<InputValidator> newValidators) {
+        validators = newValidators;
     }
 
     /**
@@ -65,7 +95,7 @@ public abstract class LabeledFieldController extends FormElementController {
      * @return  true if this field is required to have input, otherwise false
      */
     public boolean isRequired() {
-        return required;
+        return validators.contains(REQUIRED_FIELD_VALIDATOR);
     }
 
     /**
@@ -84,15 +114,15 @@ public abstract class LabeledFieldController extends FormElementController {
      * @return  a list containing all the validation errors
      */
     public List<ValidationError> validateInput() {
-        List<ValidationError> errors = new ArrayList<ValidationError>();
-
-        if (isRequired()) {
-            Object value = getModel().getValue(getName());
-            if (value == null || (value instanceof String && TextUtils.isEmpty((String)value))) {
-                errors.add(new RequiredField(getName(), getLabel()));
+        List<ValidationError> errors = new ArrayList<>();
+        Object value = getModel().getValue(getName());
+        ValidationError error;
+        for (InputValidator validator : validators) {
+            error = validator.validate(value, getName(), getLabel());
+            if (error != null){
+                errors.add(error);
             }
         }
-
         return errors;
     }
 

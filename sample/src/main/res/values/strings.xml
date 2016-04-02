@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Catalog</string>
     <string name="menu_save">Save</string>
+    <string name="custom_validation_error">This field value must be even</string>
 </resources>

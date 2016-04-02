@@ -1,10 +1,13 @@
 package com.github.dkharrat.nexusdialog.sample;
 
+import android.text.InputType;
 import android.view.*;
 import com.github.dkharrat.nexusdialog.FormWithAppCompatActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
+import com.github.dkharrat.nexusdialog.validations.RequiredFieldValidator;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -28,6 +31,7 @@ public class ComplexForm extends FormWithAppCompatActivity {
     private final static String GENDER = "gender";
     private final static String FAVORITE_COLOR = "favColor";
     private final static String CUSTOM_ELEM = "customElem";
+    private final static String EVEN_NUMBER = "evenNumber";
 
     private final Stack<String> addedElements = new Stack<String>();
 
@@ -61,7 +65,18 @@ public class ComplexForm extends FormWithAppCompatActivity {
         });
         section.addElement(customElem);
 
+        final FormSectionController validationSection = new FormSectionController(this, "Some checked input");
+
+        HashSet<InputValidator> inputValidators = new HashSet<InputValidator>();
+        inputValidators.add(new CustomValidation());
+        inputValidators.add(new RequiredFieldValidator());
+        validationSection.addElement(new EditTextController(
+            this, EVEN_NUMBER, "enter an even number", "Put a number here",
+            inputValidators, InputType.TYPE_CLASS_NUMBER
+        ));
+
         getFormController().addSection(section);
+        getFormController().addSection(validationSection);
 
         PropertyChangeListener nameFieldListener = new PropertyChangeListener() {
             @Override public void propertyChange(PropertyChangeEvent event) {
@@ -110,11 +125,13 @@ public class ComplexForm extends FormWithAppCompatActivity {
             Object lastName = getModel().getValue(LAST_NAME);
             Object gender = getModel().getValue(GENDER);
             Object favColor = getModel().getValue(FAVORITE_COLOR);
+            Object number= getModel().getValue(EVEN_NUMBER);
 
             String msg = "First name: " + firstName + "\n"
                     + "Last name: " + lastName + "\n"
                     + "Gender: " + gender + "\n"
-                    + "Favorite Color: " + favColor + "\n";
+                    + "Favorite Color: " + favColor + "\n"
+                    + "Even number: " + number + "\n";
             MessageUtil.showAlertMessage("Field Values", msg, this);
         } else {
             getFormController().showValidationErrors();

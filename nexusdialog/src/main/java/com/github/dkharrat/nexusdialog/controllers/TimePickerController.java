@@ -9,11 +9,13 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.github.dkharrat.nexusdialog.FormController;
+import com.github.dkharrat.nexusdialog.validations.InputValidator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Set;
 import java.util.TimeZone;
 
 public class TimePickerController extends LabeledFieldController {
@@ -23,6 +25,24 @@ public class TimePickerController extends LabeledFieldController {
     private final SimpleDateFormat displayFormat;
     private final TimeZone timeZone;
     private final boolean is24HourView;
+
+    /**
+     * Constructs a new instance of a time picker field.
+     *
+     * @param ctx               the Android context
+     * @param name              the name of the field
+     * @param labelText         the label to display beside the field. Set to {@code null} to not show a label.
+     * @param validators        contains the validations to process on the field
+     * @param displayFormat     the format of the time to show in the text box when a time is set
+     * @param is24HourView      the format of time picker dialog should be 24 hour format or not
+     */
+    public TimePickerController(Context ctx, String name, String labelText,  Set<InputValidator> validators, SimpleDateFormat displayFormat, boolean is24HourView) {
+        super(ctx, name, labelText, validators);
+        this.displayFormat = displayFormat;
+        this.timeZone = displayFormat.getTimeZone();
+        this.is24HourView = is24HourView;
+    }
+
 
     /**
      * Constructs a new instance of a time picker field.
