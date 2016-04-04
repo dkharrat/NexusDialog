@@ -25,14 +25,14 @@ Here's the code for that example (less than 7 lines of real code!):
     public class SimpleExample extends FormActivity {
 
         @Override protected void initForm() {
+            setTitle("Simple Example");
+
             FormSectionController section = new FormSectionController(this, "Personal Info");
             section.addElement(new EditTextController(this, "firstName", "First name"));
             section.addElement(new EditTextController(this, "lastName", "Last name"));
             section.addElement(new SelectionController(this, "gender", "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
 
             getFormController().addSection(section);
-
-            setTitle("Simple Example");
         }
     }
 
@@ -47,7 +47,9 @@ the following form elements are supported:
 
 * `ValueController`: Shows a TextView containing a value
 * `EditTextController`: EditText view that allows for free-form text input.
+* `CheckBoxController`: CheckBox view that allows for two-states: either checked or unchecked.
 * `DatePickerController`: Displays a date picker to allow choosing a specific date
+* `TimePickerController`: Displays a time picker to allow choosing a specific time
 * `SelectionController`: Displays a spinner with a list of item to select from
 * `SearchableSelectionController`: Displays a (typically large) list of items to select from, with the ability to
     search the list and also allow free-form text.
@@ -65,7 +67,7 @@ There are multiple ways to include your project, depending on your build environ
 Add the following dependency to your build.gradle file for your project:
 
     dependencies {
-      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.3.0'
+      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.4.0'
     }
 
 Make sure your application is using the Android SDK v23 or later in your build.gradle file:
@@ -83,7 +85,7 @@ Add the following dependency to your pom.xml file for your project (requires and
     <dependency>
         <groupId>com.github.dkharrat.nexusdialog</groupId>
         <artifactId>nexusdialog</artifactId>
-        <version>0.3.0</version>
+        <version>0.4.0</version>
         <type>aar</type>
     </dependency>
 
@@ -221,7 +223,6 @@ Planned Features
 The framework is constantly being improved and new features are being implemented. The following improvements are
 planned:
 
-* Support switches (on/off)
 * Support buttons
 * Support sliders
 

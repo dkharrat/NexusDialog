@@ -1,10 +1,20 @@
 Changelog
 =========
 
+0.4.0
+-----
+* Add TimePickerController ([#15](https://github.com/dkharrat/NexusDialog/pull/15))
+* Add CheckBoxController ([#10](https://github.com/dkharrat/NexusDialog/pull/10))
+* Support inline errors display method ([#13](https://github.com/dkharrat/NexusDialog/pull/13))
+* Support custom field validations ([#16](https://github.com/dkharrat/NexusDialog/pull/16))
+* Fix crash on screen rotation ([#11](https://github.com/dkharrat/NexusDialog/issues/11))
+* Fix field value duplication after screen rotation ([#12](https://github.com/dkharrat/NexusDialog/issues/12))
+* Fix method `FormSectionController#removeElement` having no effect ([#8](https://github.com/dkharrat/NexusDialog/issues/8))
+
 0.3.0
 -----
 * Updated to use Android SDK 23
-* Support adding form elements dynamically
+* Support adding form elements dynamically ([#5](https://github.com/dkharrat/NexusDialog/issues/5))
 
 0.2.2
 -----
