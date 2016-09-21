@@ -13,9 +13,7 @@ import com.github.dkharrat.nexusdialog.validations.ValidationErrorDisplay;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -242,20 +240,7 @@ public class FormController {
         registerFormModelListener();
     }
 
-    private FormModel model = new FormModel() {
-
-        private final Map<String,Object> data = new HashMap<String,Object>();
-
-        @Override
-        public Object getBackingValue(String name) {
-            return data.get(name);
-        }
-
-        @Override
-        public void setBackingValue(String name, Object value) {
-            data.put(name, value);
-        }
-    };
+    private FormModel model = new MapFormModel();
 
     private PropertyChangeListener modelListener = new PropertyChangeListener() {
         @Override public void propertyChange(PropertyChangeEvent event) {
