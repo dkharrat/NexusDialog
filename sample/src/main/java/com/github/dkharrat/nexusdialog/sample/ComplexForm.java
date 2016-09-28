@@ -2,6 +2,8 @@ package com.github.dkharrat.nexusdialog.sample;
 
 import android.text.InputType;
 import android.view.*;
+
+import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.FormWithAppCompatActivity;
 import com.github.dkharrat.nexusdialog.controllers.*;
 import com.github.dkharrat.nexusdialog.controllers.SearchableSelectionController.SelectionDataSource;
@@ -36,7 +38,7 @@ public class ComplexForm extends FormWithAppCompatActivity {
     private final Stack<String> addedElements = new Stack<String>();
 
     @Override
-    protected void initForm() {
+    public void initForm(FormController formController) {
         setTitle("Complex Form");
 
         final FormSectionController section = new FormSectionController(this, "Personal Info");

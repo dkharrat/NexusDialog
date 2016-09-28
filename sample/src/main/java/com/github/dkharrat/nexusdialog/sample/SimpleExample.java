@@ -1,5 +1,6 @@
 package com.github.dkharrat.nexusdialog.sample;
 
+import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.FormWithAppCompatActivity;
 import com.github.dkharrat.nexusdialog.controllers.CheckBoxController;
 import com.github.dkharrat.nexusdialog.controllers.DatePickerController;
@@ -15,7 +16,7 @@ import java.util.Arrays;
  */
 public class SimpleExample extends FormWithAppCompatActivity {
 
-    @Override protected void initForm() {
+    @Override public void initForm(FormController formController) {
         setTitle("Simple Example");
 
         FormSectionController section = new FormSectionController(this, "Personal Info");
@@ -25,6 +26,6 @@ public class SimpleExample extends FormWithAppCompatActivity {
         section.addElement(new CheckBoxController(this, "hobbies", "You like", true, Arrays.asList("sport", "gaming", "relaxation", "development"), true));
         section.addElement(new DatePickerController(this, "date", "Choose Date"));
         section.addElement(new TimePickerController(this, "time", "Choose Time"));
-        getFormController().addSection(section);
+        formController.addSection(section);
     }
 }

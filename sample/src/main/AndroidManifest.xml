@@ -18,6 +18,7 @@
         <activity android:name=".ComplexForm"/>
         <activity android:name=".SimpleExample"/>
         <activity android:name=".CustomFormActivity"/>
+        <activity android:name=".FragmentFormActivity"/>
     </application>
 
 </manifest>
