@@ -38,7 +38,7 @@ public class ComplexForm extends FormWithAppCompatActivity {
     private final Stack<String> addedElements = new Stack<String>();
 
     @Override
-    public void initForm(FormController formController) {
+    public void initForm(final FormController formController) {
         setTitle("Complex Form");
 
         final FormSectionController section = new FormSectionController(this, "Personal Info");
@@ -77,25 +77,25 @@ public class ComplexForm extends FormWithAppCompatActivity {
             inputValidators, InputType.TYPE_CLASS_NUMBER
         ));
 
-        getFormController().addSection(section);
-        getFormController().addSection(validationSection);
+        formController.addSection(section);
+        formController.addSection(validationSection);
 
         PropertyChangeListener nameFieldListener = new PropertyChangeListener() {
             @Override public void propertyChange(PropertyChangeEvent event) {
-                Object firstName = getModel().getValue(FIRST_NAME);
-                Object lastName = getModel().getValue(LAST_NAME);
+                Object firstName = formController.getModel().getValue(FIRST_NAME);
+                Object lastName = formController.getModel().getValue(LAST_NAME);
 
                 // setting a field value will automatically refresh the form element
-                getModel().setValue(FULL_NAME, firstName + " " + lastName);
+                formController.getModel().setValue(FULL_NAME, firstName + " " + lastName);
             }
         };
 
         // add a listener to get notifications for any field changes
-        getModel().addPropertyChangeListener(FIRST_NAME, nameFieldListener);
-        getModel().addPropertyChangeListener(LAST_NAME, nameFieldListener);
+        formController.getModel().addPropertyChangeListener(FIRST_NAME, nameFieldListener);
+        formController.getModel().addPropertyChangeListener(LAST_NAME, nameFieldListener);
 
         // initialize field with a value
-        getModel().setValue(LAST_NAME, "Smith");
+        formController.getModel().setValue(LAST_NAME, "Smith");
     }
 
     private final SelectionDataSource dataSource = new SelectionDataSource() {
