@@ -123,24 +123,29 @@ public class CheckBoxController extends LabeledFieldController {
             });
 
             checkboxContainer.addView(checkBox);
+            refresh(checkBox, index);
         }
         return checkboxContainer;
     }
 
+    public void refresh(CheckBox checkbox, int index) {
+        Set<Object> modelValues = retrieveModelValues();
+        checkbox.setChecked(
+                modelValues.contains(
+                        areValuesDefined() ? checkbox.getText() : index
+                )
+        );
+    }
+
     @Override
     public void refresh() {
-        Set<Object> modelValues = retrieveModelValues();
         ViewGroup layout = getContainer();
 
         CheckBox checkbox;
         int nbItem = items.size();
         for (int index = 0; index < nbItem; index++) {
             checkbox = (CheckBox) layout.findViewById(CHECKBOX_ID + index);
-            checkbox.setChecked(
-                    modelValues.contains(
-                            areValuesDefined() ? checkbox.getText() : index
-                    )
-            );
+            refresh(checkbox, index);
         }
     }
 

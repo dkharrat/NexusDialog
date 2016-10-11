@@ -17,6 +17,7 @@ import com.github.dkharrat.nexusdialog.controllers.SelectionController;
 import com.github.dkharrat.nexusdialog.utils.MessageUtil;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class FragmentFormActivity extends FragmentActivity {
     private static final String FORM_FRAGMENT_KEY = "nd_form";
@@ -85,6 +86,11 @@ public class FragmentFormActivity extends FragmentActivity {
             section.addElement(new EditTextController(ctxt, LAST_NAME, "Last name"));
             section.addElement(new SelectionController(ctxt, GENDER, "Gender", true, "Select", Arrays.asList("Male", "Female"), true));
             section.addElement(new CheckBoxController(ctxt, HOBBIES, "You like", true, Arrays.asList("sport", "gaming", "relaxation", "development"), true));
+
+            HashSet<String> checkedBoxes = new HashSet<String>();
+            checkedBoxes.add("gaming");
+            controller.getModel().setValue("hobbies", checkedBoxes);
+
             controller.addSection(section);
         }
     }
