@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.4.1
+-----
+* Fix crash when using Fragments ([#23](https://github.com/dkharrat/NexusDialog/pull/23))
+* Form can now be created from Fragments ([#27](https://github.com/dkharrat/NexusDialog/pull/27))
+* Fix layout issue with CheckBoxController ([#36](https://github.com/dkharrat/NexusDialog/pull/36))
+* CheckBoxController now refreshes the value of each checkbox in createFieldView method ([#19](https://github.com/dkharrat/NexusDialog/issues/19))
+
 0.4.0
 -----
 * Add TimePickerController ([#15](https://github.com/dkharrat/NexusDialog/pull/15))
