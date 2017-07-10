@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 apply plugin: 'com.android.application'
@@ -13,8 +13,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         applicationId "com.github.dkharrat.nexusdialog.sample"
