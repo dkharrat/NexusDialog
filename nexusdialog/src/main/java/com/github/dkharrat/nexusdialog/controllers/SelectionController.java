@@ -1,17 +1,20 @@
 package com.github.dkharrat.nexusdialog.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.github.dkharrat.nexusdialog.FormController;
-import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.validations.InputValidator;
 
 /**
@@ -62,8 +65,9 @@ public class SelectionController extends LabeledFieldController {
     public SelectionController(Context ctx, String name, String labelText, Set<InputValidator> validators, String prompt, List<String> items, List<?> values) {
         super(ctx, name, labelText, validators);
         this.prompt = prompt;
-        this.items = items;
-        this.values = values;
+        this.items = new ArrayList<>(items);
+        this.items.add(prompt);     // last item is used for the 'prompt' by the SpinnerView
+        this.values = new ArrayList<>(values);
     }
 
     /**
@@ -99,8 +103,9 @@ public class SelectionController extends LabeledFieldController {
     public SelectionController(Context ctx, String name, String labelText, boolean isRequired, String prompt, List<String> items, List<?> values) {
         super(ctx, name, labelText, isRequired);
         this.prompt = prompt;
-        this.items = items;
-        this.values = values;
+        this.items = new ArrayList<>(items);
+        this.items.add(prompt);     // last item is used for the 'prompt' by the SpinnerView
+        this.values = new ArrayList<>(values);
     }
 
     /**
@@ -117,9 +122,28 @@ public class SelectionController extends LabeledFieldController {
         Spinner spinnerView = new Spinner(getContext());
         spinnerView.setId(spinnerId);
         spinnerView.setPrompt(prompt);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, items) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                if (position == getCount()) {
+                    TextView itemView = ((TextView)view.findViewById(android.R.id.text1));
+                    itemView.setText("");
+                    itemView.setHint(getItem(getCount()));
+                }
+
+                return view;
+            }
+
+            @Override
+            public int getCount() {
+                return super.getCount()-1; // don't display last item (it's used for the prompt)
+            }
+        };
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerView.setAdapter(new NothingSelectedSpinnerAdapter(spinnerAdapter, R.layout.nothing_selected, getContext()));
+        spinnerView.setAdapter(spinnerAdapter);
+
         spinnerView.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
@@ -129,11 +153,11 @@ public class SelectionController extends LabeledFieldController {
                 if (values == null) {
                     value = pos;
                 } else {
-                    // pos of 0 indicates nothing is selected
-                    if (pos == 0) {
+                    // last pos indicates nothing is selected
+                    if (pos == items.size()-1) {
                         value = null;
                     } else {    // if something is selected, set the value on the model
-                        value = values.get(pos-1);
+                        value = values.get(pos);
                     }
                 }
 
@@ -152,12 +176,12 @@ public class SelectionController extends LabeledFieldController {
 
     private void refresh(Spinner spinner) {
         Object value = getModel().getValue(getName());
-        int selectionIndex = 0;
+        int selectionIndex = items.size()-1;    // index of last item shows the 'prompt'
 
         if (values != null) {
             for (int i=0; i< values.size(); i++) {
                 if (values.get(i).equals(value)) {
-                    selectionIndex = i+1;
+                    selectionIndex = i;
                     break;
                 }
             }
