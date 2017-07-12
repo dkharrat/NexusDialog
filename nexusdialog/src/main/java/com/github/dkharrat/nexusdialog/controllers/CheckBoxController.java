@@ -59,6 +59,10 @@ public class CheckBoxController extends LabeledFieldController {
         super(ctx, name, labelText, validators);
         this.items = items;
         this.values = values;
+
+        if(values != null && items.size() != values.size()) {
+            throw new IllegalArgumentException("Size of Values and Items must be equal.");
+        }
     }
 
 
@@ -94,6 +98,10 @@ public class CheckBoxController extends LabeledFieldController {
         super(ctx, name, labelText, isRequired);
         this.items = items;
         this.values = values;
+
+        if(values != null && items.size() != values.size()) {
+            throw new IllegalArgumentException("Size of Values and Items must be equal.");
+        }
     }
 
     @Override
@@ -132,7 +140,7 @@ public class CheckBoxController extends LabeledFieldController {
         Set<Object> modelValues = retrieveModelValues();
         checkbox.setChecked(
                 modelValues.contains(
-                        areValuesDefined() ? checkbox.getText() : index
+                        areValuesDefined() ? values[index] : index
                 )
         );
     }
