@@ -93,37 +93,6 @@ Add the following dependency to your pom.xml file for your project (requires and
 
 Add the appropriate dependency in your build.gradle file and refresh your project.
 
-#### Eclipse
-
-1. In Eclipse, import the android-support-v7-appcompat library by following the instructions at
-   [this page](http://developer.android.com/tools/support-library/setup.html#libs-with-res).
-2. Ensure the android-support-v7-appcompat library has been imported and is compiling without errors.
-3. Import the nexusdialog library project into Eclipse:
-    1. Select **Existing Android Code Into Workspace** and click **Next**.
-    2. Browse to the library path: nexusdialog/src/main.
-    3. Click **Finish** to import the project. You should now see a project called _main_.
-    4. Right-click on the project in the Package Explorer and select **Refactor > Rename**.
-    5. Name the project 'nexusdialog'
-    6. Right-click the _nexusdialog_ project in the Package Explorer and select **Properties**.
-    7. Select the **Java Build Path** page and click on the **Source** tab.
-    8. Remove the **nexusdialog/src** source folder from the list.
-    9. Click on the **Add Folder** button.
-    10. Select the folder _java_ and click **OK**.
-    11. In the same **Properties** dialog, select the **Android** page.
-    12. Under the **Project Build Target** select a target of API 17 or higher.
-    13. Enable the **Is Library** checkbox.
-    14. Click on the **Add** button to add a library dependency.
-    15. Select the _android-support-v7-appcompat_ library and click **OK**.
-    16. Press **OK** in the **Properties** dialog to close it.
-    17. Ensure the library compiles without errors. You may need to clean the project multiple times to be in a clean state.
-4. Add the _nexusdialog_ project as a dependency to your project:
-    1. Right-click on your project in the Package Explorer list and select **Properties**.
-    2. Select the **Android** page.
-    3. Under the Library section, click the **Add** button.
-    4. Select _nexusdialog_ and press **OK**.
-    5. Press **OK** in the **Properties** dialog to close it.
-5. You can now start using NexusDialog in your project.
-
 How to Use NexusDialog
 ----------------------
 Once NexusDialog is setup as a dependency in your project (by following the instructions above), you can start creating
