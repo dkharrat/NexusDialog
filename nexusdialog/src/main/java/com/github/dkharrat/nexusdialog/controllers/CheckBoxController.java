@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
+import com.github.dkharrat.nexusdialog.FormController;
 import com.github.dkharrat.nexusdialog.R;
 import com.github.dkharrat.nexusdialog.validations.InputValidator;
 
@@ -23,7 +24,7 @@ import java.util.Set;
  * selection can be represented by returning {@code null} for the value of the field.
  */
 public class CheckBoxController extends LabeledFieldController {
-    private final static int CHECKBOX_ID = 101010;
+    private final int CHECKBOX_ID = FormController.generateViewId();
     private final List<String> items;
     private final List<?> values;
 
