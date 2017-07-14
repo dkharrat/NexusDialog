@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.4.2
+-----
+* Correct behaviour of CheckBoxController with values ([#59](https://github.com/dkharrat/NexusDialog/pull/59))
+* Honor set prompt for SelectionController
+* Fix missed notifications for changes in CheckBox
+* Fix bad values shown for CheckBoxController
+* Use latest Android gradle plugin and Android SDK
+
 0.4.1
 -----
 * Fix crash when using Fragments ([#23](https://github.com/dkharrat/NexusDialog/pull/23))

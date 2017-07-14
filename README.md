@@ -67,7 +67,7 @@ There are multiple ways to include your project, depending on your build environ
 Add the following dependency to your build.gradle file for your project:
 
     dependencies {
-      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.4.1'
+      compile 'com.github.dkharrat.nexusdialog:nexusdialog:0.4.2'
     }
 
 Make sure your application is using the Android SDK v23 or later in your build.gradle file:
@@ -85,7 +85,7 @@ Add the following dependency to your pom.xml file for your project (requires and
     <dependency>
         <groupId>com.github.dkharrat.nexusdialog</groupId>
         <artifactId>nexusdialog</artifactId>
-        <version>0.4.1</version>
+        <version>0.4.2</version>
         <type>aar</type>
     </dependency>
 
