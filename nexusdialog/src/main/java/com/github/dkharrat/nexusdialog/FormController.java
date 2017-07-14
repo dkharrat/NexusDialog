@@ -21,19 +21,23 @@ import java.util.concurrent.atomic.AtomicInteger;
  * to quickly create and manage form fields. Typically, an instance of this class is created within an Activity or Fragment.
  * <p/>
  * The form's data is backed by a model represented by {@link FormModel}, which provides a generic interface to access
- * the data. Form elements use the model to retrieve current field values and set them upon user input. By default,
- * <code>FormController</code> uses a default Map-based model keyed by the element's names. You can also use a custom
- * implementation of a <code>FormModel</code> if desired.
+ * the data. Form elements use the model to retrieve current field values and set them upon user input.
  */
 public class FormController {
     private final List<FormSectionController> sectionControllers = new ArrayList<FormSectionController>();
 
-    private final Context context;
+    private FormModel model;
     private ValidationErrorDisplay validationErrorDisplay;
     private static final AtomicInteger nextGeneratedViewId = new AtomicInteger(1);
 
-    public FormController(Context context) {
-        this.context = context;
+    /**
+     * Constructs a new FormController.
+     *
+     * @param context       the Activity's context
+     * @param formModel     the backing model that stores the fields values. A map-based implementation is provided by {@link MapFormModel}.
+     */
+    public FormController(Context context, FormModel formModel) {
+        this.model = formModel;
         setValidationErrorsDisplayMethod(new PerFieldValidationErrorDisplay(context, this));
     }
 
@@ -239,8 +243,6 @@ public class FormController {
         // now that the view is setup, register a listener of the model to update the view on changes
         registerFormModelListener();
     }
-
-    private FormModel model = new MapFormModel();
 
     private PropertyChangeListener modelListener = new PropertyChangeListener() {
         @Override public void propertyChange(PropertyChangeEvent event) {
