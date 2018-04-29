@@ -1,9 +1,10 @@
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.2'
     }
 }
 apply plugin: 'com.android.library'
@@ -19,7 +20,7 @@ group = "com.github.dkharrat.nexusdialog"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 10
@@ -36,16 +37,19 @@ android {
         task("generate${variant.name}Javadoc", type: Javadoc) {
             description "Generates Javadoc for $variant.name."
             source = variant.javaCompile.source
-            ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-            classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
             exclude '**/R.html', '**/R.*.html', '**/BuildConfig.java'
+            doFirst {
+                classpath =
+                        files(variant.javaCompile.classpath.files,
+                                project.android.getBootClasspath())
+            }
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:appcompat-v7:25.3.1'
 }
 
 task sourcesJar(type: Jar) {
